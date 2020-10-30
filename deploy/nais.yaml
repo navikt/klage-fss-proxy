@@ -1,0 +1,60 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: klage-fss-proxy
+  namespace: klage
+  labels:
+    team: klage
+spec:
+  image: {{ image }}
+  azure:
+    application:
+      enabled: true
+      tenant: {{tenant}}
+  port: 7081
+  liveness:
+    path: /internal/health
+    initialDelay: 20
+    timeout: 1
+    periodSeconds: 5
+    failureThreshold: 10
+  readiness:
+    path: /internal/health
+    initialDelay: 20
+    timeout: 1
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
+  ingresses:
+    - {{ingress}}
+  replicas:
+    min: 1
+    max: 1
+    cpuThresholdPercentage: 90
+  prometheus:
+    enabled: true
+    path: /internal/prometheus
+  secureLogs:
+    enabled: true
+  webproxy: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: klage-oppgave-api
+    outbound:
+      external:
+      {{#each externalHosts as |host|}}
+        - host: {{host}}
+      {{/each}}
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: {{springProfile}}
+  vault:
+    enabled: true
+    paths:
+      - kvPath: { { vaultServiceuserPath } }
+        mountPath: { { srvMountPath } }

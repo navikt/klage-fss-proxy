@@ -1,0 +1,61 @@
+spring:
+  main:
+    banner-mode: OFF
+  sleuth:
+    propagation-keys:
+      - Nav-Callid
+      - Nav-Consumer-Id
+    log:
+      slf4j:
+        whitelisted-mdc-keys:
+          - Nav-Callid
+          - Nav-Consumer-Id
+
+server:
+  port: 7081
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints.web:
+    exposure:
+      include: info, health, metrics, prometheus
+    base-path: "/internal"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+SERVICE_USER_USERNAME: srvklage-saksbeh
+
+TENANT_ID: 966ac572-f5b7-4bbe-aa88-c76419c0f851
+
+no.nav.security.jwt:
+  issuer:
+    aad:
+      discoveryurl: ${AZURE_APP_WELL_KNOWN_URL}
+      accepted_audience: ${AZURE_APP_CLIENT_ID}
+  client:
+    registration:
+      onbehalfof:
+        token-endpoint-url: https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token
+        grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
+        scope: https://graph.microsoft.com/.default
+        authentication:
+          client-id: ${AZURE_APP_CLIENT_ID}
+          client-secret: ${AZURE_APP_CLIENT_SECRET}
+          client-auth-method: client_secret_basic
+
+navCallId: Nav-Callid
+navConsumerId: Nav-Consumer-Id
+
+allowed.origins:
+  https://klage-oppgave-api.dev.nav.no
+
+OPPGAVE_URL: https://api-gw-q1.oera.no/oppgave/api/v1/oppgaver

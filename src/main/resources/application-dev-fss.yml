@@ -1,0 +1,6 @@
+SECURITY_TOKEN_SERVICE_REST_URL: https://api-gw-q1.oera.no/security-token-service
+LDAP_URL: ldaps://ldapgw.preprod.local
+LDAP_BASEDN: dc=preprod,dc=local
+LDAP_DOMAIN: PREPROD.LOCAL
+LDAP_SERVICEUSER_BASEDN: ou=ServiceAccounts,dc=preprod,dc=local
+LDAP_USER_BASEDN: ou=NAV,ou=BusinessUnits,dc=preprod,dc=local
