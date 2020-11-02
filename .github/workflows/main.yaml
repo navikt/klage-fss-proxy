@@ -34,14 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push docker image
         run: docker push $IMAGE
-      - name: Post failures to Slack
-        if: failure()
-        run: |
-          curl -X POST --data-urlencode "payload={\"channel\": \"$CHANNEL\", \"text\": \"$MESSAGE\", \"icon_emoji\": \":ghost:\"}" $WEBHOOK_URL
-        env:
-          MESSAGE: "Bygg feilet"
-          CHANNEL: "#klage-notifications"
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
   deploytodev:
     name: Deploy to dev
     needs: build
@@ -56,11 +48,3 @@ jobs:
           CLUSTER: dev-fss
           RESOURCE: deploy/nais.yaml
           VARS: deploy/dev.yaml
-      - name: Post failures to Slack
-        if: failure()
-        run: |
-          curl -X POST --data-urlencode "payload={\"channel\": \"$CHANNEL\", \"text\": \"$MESSAGE\", \"icon_emoji\": \":ghost:\"}" $WEBHOOK_URL
-        env:
-          MESSAGE: "Deploy til dev feilet"
-          CHANNEL: "#klage-notifications"
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
