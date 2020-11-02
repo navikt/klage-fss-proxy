@@ -50,11 +50,9 @@ spec:
       {{#each externalHosts as |host|}}
         - host: {{host}}
       {{/each}}
+  envFrom:
+    - secret: serviceuser
+    - secret: ldap
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: {{springProfile}}
-  vault:
-    enabled: true
-    paths:
-      - kvPath: { { vaultServiceuserPath } }
-        mountPath: { { srvMountPath } }

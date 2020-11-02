@@ -3,5 +3,3 @@ externalHosts:
   - login.microsoftonline.com
 springProfile: dev-fss
 tenant: trygdeetaten.no
-vaultServiceuserPath: serviceuser/data/dev/srvklage-saksbeh
-srvMountPath: /secrets/srvklage-saksbeh
