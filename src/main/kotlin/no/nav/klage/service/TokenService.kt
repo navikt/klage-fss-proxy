@@ -10,7 +10,7 @@ class TokenService(
 ) {
 
     fun getIdent(): String = tokenValidationContextHolder.tokenValidationContext
-            .getJwtToken(SecurityConfiguration.ISSUER_AAD).jwtTokenClaims?.get("todo")?.toString()
+            .getJwtToken(SecurityConfiguration.ISSUER_AAD).jwtTokenClaims?.get("NAVIdent")?.toString()
             ?: throw RuntimeException("Ident not found in token")
 
 }
