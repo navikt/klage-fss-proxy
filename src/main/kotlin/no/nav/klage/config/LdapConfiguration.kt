@@ -19,19 +19,17 @@ class LdapConfiguration {
     @Value("\${LDAP_PASSWORD}")
     private lateinit var password: String
 
-    private val env = Hashtable<String, String>()
-
-    init {
-        env[Context.INITIAL_CONTEXT_FACTORY] = "com.sun.jndi.ldap.LdapCtxFactory"
-        env[Context.SECURITY_AUTHENTICATION] = "simple"
-        env[Context.PROVIDER_URL] = ldapUrl
-        env[Context.SECURITY_PRINCIPAL] = username
-        env[Context.SECURITY_CREDENTIALS] = password
-    }
-
     @Bean
     fun getNavLdapContext(): LdapContext {
-        return InitialLdapContext(env, null)
+        return InitialLdapContext(getLdapEnv(), null)
+    }
+
+    private fun getLdapEnv() = Hashtable<String, String>().apply {
+        put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory")
+        put(Context.SECURITY_AUTHENTICATION, "simple")
+        put(Context.PROVIDER_URL, ldapUrl)
+        put(Context.SECURITY_PRINCIPAL, username)
+        put(Context.SECURITY_CREDENTIALS, password)
     }
 
 
