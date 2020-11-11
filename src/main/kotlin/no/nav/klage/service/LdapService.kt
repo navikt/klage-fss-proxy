@@ -17,11 +17,12 @@ class LdapService(
     @Value("\${LDAP_BASEDN}")
     private lateinit var ldapBaseDn: String
 
-    fun getRolesForUser(): List<String> = getRoles(search())
+    fun getRolesFor(ident: String): List<String> = getRoles(search(ident))
+    fun getRolesForUser(): List<String> = getRoles(search(tokenService.getIdent()))
 
-    private fun search() = navLdapContext.search(
+    private fun search(ident: String) = navLdapContext.search(
             "OU=Users,OU=NAV,OU=BusinessUnits,$ldapBaseDn",
-            "(&(objectClass=user)(CN=${tokenService.getIdent()}))",
+            "(&(objectClass=user)(CN=${ident}))",
             SearchControls().apply {
                 searchScope = SearchControls.SUBTREE_SCOPE
             }
