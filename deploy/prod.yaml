@@ -3,3 +3,5 @@ externalHosts:
   - login.microsoftonline.com
 springProfile: prod-fss
 tenant: nav.no
+inboundNamespace: klage
+inboundCluster: prod-gcp
