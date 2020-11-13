@@ -59,3 +59,12 @@ allowed.origins:
   https://klage-oppgave-api.dev.nav.no
 
 OPPGAVE_URL: https://api-gw-q1.oera.no/oppgave/api/v1/oppgaver
+
+ldap:
+  urls: ${LDAP_URL}
+  base: ${LDAP_BASEDN}
+  username: ${LDAP_USERNAME}
+  password: ${LDAP_PASSWORD}
+  base-environment:
+    com.sun.jndi.ldap.read.timeout: 1000
+    com.sun.jndi.ldap.connect.timeout: 1000

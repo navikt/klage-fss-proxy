@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val springSleuthVersion = "2.2.3.RELEASE"
+val springLdapVersion = "2.3.3.RELEASE"
 val tokenValidationVersion = "1.3.0"
 val oidcSupportVersion = "0.2.18"
 val logstashVersion = "5.1"
@@ -26,6 +27,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth:$springSleuthVersion")
+    implementation("org.springframework.ldap:spring-ldap-core:$springLdapVersion")
 
     implementation("no.nav.security:token-validation-spring:$tokenValidationVersion")
     implementation("no.nav.security:token-client-spring:$tokenValidationVersion")
