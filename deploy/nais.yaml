@@ -45,6 +45,8 @@ spec:
     inbound:
       rules:
         - application: klage-oppgave-api
+        - namespace: klage
+        - cluster: dev-gcp
     outbound:
       external:
       {{#each externalHosts as |host|}}
