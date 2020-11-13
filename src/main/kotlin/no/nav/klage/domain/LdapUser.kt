@@ -6,19 +6,24 @@ import org.springframework.ldap.odm.annotations.Id
 import javax.naming.Name
 
 @Entry(objectClasses = ["user"])
-data class LdapUser(
+class LdapUser {
         @Id
-        val dn: Name,
-        @Attribute(name = "givenname" )
-        val fornavn: String,
-        val sn: String,
-        val displayName: String,
-        val mail: String,
-        @Attribute(name = "SamAccountName" )
-        val ident: String,
-        val memberOf: List<String>,
-        @Attribute(name = "office" )
-        val navkontor: String,
-        @Attribute(name = "streetAddress" )
-        val navkontorId: String
-)
+        var dn: Name? = null
+
+        @Attribute(name = "givenname")
+        var fornavn: String? = null
+        var sn: String? = null
+        var displayName: String? = null
+        var mail: String? = null
+
+        @Attribute(name = "SamAccountName")
+        var ident: String? = null
+        var memberOf: List<String> = emptyList()
+
+        @Attribute(name = "office")
+        var navkontor: String? = null
+
+        @Attribute(name = "streetAddress")
+        var navkontorId: String? = null
+
+}
