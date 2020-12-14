@@ -11,6 +11,9 @@ spec:
     application:
       enabled: true
       tenant: {{tenant}}
+      claims:
+        extra:
+          - NAVident
   port: 7081
   liveness:
     path: /internal/health
