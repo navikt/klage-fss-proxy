@@ -1,4 +1,4 @@
-ingress: https://klage-fss-proxy.fss-pub.nais.io
+ingress: https://klage-fss-proxy.prod-fss-pub.nais.io
 externalHosts:
   - login.microsoftonline.com
 springProfile: prod-fss
