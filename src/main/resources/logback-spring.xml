@@ -20,6 +20,23 @@
     </springProfile>
 
     <springProfile name="!local">
+        <appender name="audit" class="com.papertrailapp.logback.Syslog4jAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%n%xEx</pattern>
+            </layout>
+
+            <syslogConfig class="org.productivity.java.syslog4j.impl.net.tcp.TCPNetSyslogConfig">
+                <host>audit.nais</host>
+                <port>6514</port>
+                <ident>klage-oppgave-api</ident>
+                <maxMessageLength>128000</maxMessageLength>
+            </syslogConfig>
+        </appender>
+
+        <logger level="INFO" name="audit" additivity="false">
+            <appender-ref ref="audit"/>
+        </logger>
+
         <appender name="secureJson" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>/secure-logs/secure.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
