@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/klage-fss-proxy:${{ github.sha }}
+  IMAGE: ghcr.io/${{ github.repository }}/klage-fss-proxy:${{ github.sha }}
 
 jobs:
   build:
@@ -20,16 +20,17 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Install Java 11
-        uses: actions/setup-java@v1
+      - name: Install Java 17
+        uses: actions/setup-java@v2.4.0
         with:
-          java-version: 11
+          java-version: 17
+          distribution: temurin
       - name: test and build
         run: ./gradlew test bootJar
       - name: Build docker image
         run: docker build -t $IMAGE .
       - name: Login to Github package registry
-        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+        run: docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push docker image

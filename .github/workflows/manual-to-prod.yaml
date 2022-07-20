@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/klage-fss-proxy:${{ github.sha }}
+  IMAGE: ghcr.io/${{ github.repository }}/klage-fss-proxy:${{ github.sha }}
 
 jobs:
   deploytoprod:

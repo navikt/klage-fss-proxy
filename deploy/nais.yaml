@@ -44,20 +44,8 @@ spec:
   secureLogs:
     enabled: true
   webproxy: true
-  accessPolicy:
-    inbound:
-      rules:
-        - application: klage-oppgave-api
-          namespace: {{inboundNamespace}}
-          cluster: {{inboundCluster}}
-    outbound:
-      external:
-      {{#each externalHosts as |host|}}
-        - host: {{host}}
-      {{/each}}
   envFrom:
     - secret: serviceuser
-    - secret: ldap
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: {{springProfile}}
