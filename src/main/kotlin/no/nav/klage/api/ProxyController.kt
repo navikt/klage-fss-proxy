@@ -1,9 +1,11 @@
 package no.nav.klage.api
 
+import no.nav.klage.clients.foerstesidegenerator.domain.PostFoerstesideRequest
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -16,7 +18,9 @@ class ProxyController() {
     }
 
     @PostMapping("/foersteside")
-    fun createFoersteside() {
-        TODO()
+    fun createFoersteside(
+        @RequestBody postFoerstesideRequest: PostFoerstesideRequest,
+    ) {
+        logger.debug("received postFoerstesideRequest: {}", postFoerstesideRequest)
     }
 }
