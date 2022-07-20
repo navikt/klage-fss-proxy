@@ -14,6 +14,12 @@ spec:
       claims:
         extra:
           - NAVident
+  accessPolicy:
+    inbound:
+      rules:
+        - application: klage-dittnav-api
+          namespace: klage
+          cluster: {{inboundCluster}}
   port: 7081
   liveness:
     path: /internal/health
