@@ -63,7 +63,7 @@ enum class Førstesidetype {
     NAV_INTERN
 }
 
-class PostFoerstesideResponse(
+data class PostFoerstesideResponse(
     val foersteside: ByteArray,
     val loepenummer: String?,
 )
