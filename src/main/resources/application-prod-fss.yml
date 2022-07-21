@@ -1,4 +1,4 @@
 TENANT_ID: 62366534-1ec3-4962-8869-9b5535279d0b
-SECURITY_TOKEN_SERVICE_REST_URL: https://api-gw.oera.no/security-token-service
+SECURITY_TOKEN_SERVICE_REST_URL: https://security-token-service.nais.adeo.no/rest/v1/sts/token
 
 FOERSTESIDEGENERATOR_BASE_URL: https://foerstesidegenerator.intern.nav.no/api/foerstesidegenerator/v1/foersteside

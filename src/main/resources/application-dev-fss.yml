@@ -1,3 +1,3 @@
-SECURITY_TOKEN_SERVICE_REST_URL: https://api-gw-q1.oera.no/security-token-service
+SECURITY_TOKEN_SERVICE_REST_URL: https://security-token-service.nais.preprod.local/rest/v1/sts/token
 
 FOERSTESIDEGENERATOR_BASE_URL: https://foerstesidegenerator-q1.dev.intern.nav.no/api/foerstesidegenerator/v1/foersteside

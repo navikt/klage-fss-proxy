@@ -51,7 +51,7 @@ spec:
     enabled: true
   webproxy: true
   envFrom:
-    - secret: serviceuser
+    - secret: srvklage-dittnav
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: {{springProfile}}

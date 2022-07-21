@@ -32,7 +32,7 @@ management:
     tags:
       application: ${spring.application.name}
 
-SERVICE_USER_USERNAME: srvklage-saksbeh
+SERVICE_USER_USERNAME: srvklage-dittnav
 
 TENANT_ID: 966ac572-f5b7-4bbe-aa88-c76419c0f851
 
