@@ -6,11 +6,16 @@ import org.springframework.stereotype.Service
 
 @Service
 class TokenService(
-        private val tokenValidationContextHolder: TokenValidationContextHolder
+        private val ctxHolder: TokenValidationContextHolder
 ) {
 
-    fun getIdent(): String = tokenValidationContextHolder.tokenValidationContext
+    fun getIdent(): String = ctxHolder.tokenValidationContext
             .getJwtToken(SecurityConfiguration.ISSUER_AAD).jwtTokenClaims?.get("NAVIdent")?.toString()
             ?: throw RuntimeException("Ident not found in token")
+
+    fun getToken(): String {
+        val token = ctxHolder.tokenValidationContext?.getJwtToken(SecurityConfiguration.ISSUER_AAD)?.tokenAsString
+        return checkNotNull(token) { "Token must be present" }
+    }
 
 }

@@ -19,9 +19,7 @@ class FoerstesidegeneratorClientConfiguration(private val webClientBuilder: WebC
             .baseUrl(url)
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-//            .defaultHeader("Nav-Consumer-Id", username)
-//            .defaultHeader("TEMA", "KLA")
-//            .defaultHeader("x-nav-apiKey", apiKey)
+            .defaultHeader("Nav-Consumer-Id", "klage-fss-proxy")
             .build()
     }
 }
