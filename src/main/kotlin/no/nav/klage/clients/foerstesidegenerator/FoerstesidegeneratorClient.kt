@@ -1,7 +1,5 @@
 package no.nav.klage.clients.foerstesidegenerator
 
-import no.nav.klage.clients.foerstesidegenerator.domain.PostFoerstesideRequest
-import no.nav.klage.clients.foerstesidegenerator.domain.PostFoerstesideResponse
 import no.nav.klage.clients.sts.StsClient
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getSecureLogger
@@ -22,40 +20,21 @@ class FoerstesidegeneratorClient(
         private val secureLogger = getSecureLogger()
     }
 
-    fun createFoersteside(postFoerstesideRequest: PostFoerstesideRequest): String {
+    fun createFoersteside(foerstesideRequest: FoerstesideRequest): ByteArray {
         runCatching {
             val res = foerstesidegeneratorWebClient.post()
                 .header(HttpHeaders.AUTHORIZATION, "Bearer ${stsClient.oidcToken()}")
-                .bodyValue(postFoerstesideRequest)
+                .bodyValue(foerstesideRequest)
                 .retrieve()
-                .bodyToMono<PostFoerstesideResponse>()
+                .bodyToMono<FoerstesideResponse>()
                 .block() ?: throw RuntimeException("Response was null")
-            logger.debug("result from foerstesidegenerator: {}", res)
 
-            return res.loepenummer ?: error("missing loepenr")
+            logger.debug("Foersteside generated with loepenummer: {}", res.loepenummer)
+
+            return res.foersteside
         }.onFailure {
             secureLogger.error("Could not create foersteside", it)
-            throw RuntimeException("Could not create foersteside")
         }
-        error("?")
+        throw RuntimeException("Could not create foersteside. See secure logs.")
     }
-
-    fun fetchFoersteside(loepenummer: String): ByteArray {
-        runCatching {
-            foerstesidegeneratorWebClient.post()
-                .header(HttpHeaders.AUTHORIZATION, )//"Bearer ${tokenUtil.getOnBehalfOfToken..()}"
-//                .bodyValue()
-                .retrieve()
-                .bodyToMono<Unit>()
-                .block() ?: throw RuntimeException("Response was null")
-
-        }.onFailure {
-            secureLogger.error("Could not fetch foersteside", it)
-            throw RuntimeException("Could not fetch foersteside")
-        }
-
-        TODO()
-    }
-
-
 }

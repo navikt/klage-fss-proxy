@@ -54,9 +54,3 @@ no.nav.security.jwt:
 
 navCallId: Nav-Callid
 navConsumerId: Nav-Consumer-Id
-
-allowed.origins:
-  https://klage-oppgave-api.dev.nav.no
-
-
-
