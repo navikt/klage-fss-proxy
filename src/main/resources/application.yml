@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: klage-fss-proxy
   main:
     banner-mode: OFF
   sleuth:
