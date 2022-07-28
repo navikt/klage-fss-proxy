@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/dependabot.yml'
 
 env:
   IMAGE: ghcr.io/${{ github.repository }}/klage-fss-proxy:${{ github.sha }}
