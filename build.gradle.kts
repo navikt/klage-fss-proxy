@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val springSleuthVersion = "3.0.4"
 val tokenValidationVersion = "2.0.20"
 val oidcSupportVersion = "0.2.18"
-val logstashVersion = "7.0"
+val logstashVersion = "7.2"
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.7.10"
