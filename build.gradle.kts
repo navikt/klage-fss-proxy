@@ -6,7 +6,7 @@ val oidcSupportVersion = "0.2.18"
 val logstashVersion = "7.2"
 
 plugins {
-    val kotlinVersion = "1.7.20"
+    val kotlinVersion = "1.7.21"
     id("org.springframework.boot") version "2.7.5"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
