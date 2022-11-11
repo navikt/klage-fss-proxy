@@ -11,7 +11,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
         name: Checkout code
       - uses: nais/deploy/actions/deploy@master
         env:
@@ -25,12 +25,9 @@ jobs:
           COMMIT=$(git rev-parse --short=7 HEAD)
           VERSION=$TIME-$COMMIT
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
-      - uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ncipollo/release-action@main
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: ${{ env.VERSION }}
+          tag: ${{ env.VERSION }}
       - name: Post failures to Slack
         if: failure()
         run: |
