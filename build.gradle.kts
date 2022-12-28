@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val springSleuthVersion = "3.1.5"
-val tokenValidationVersion = "2.1.8"
+val tokenValidationVersion = "3.0.2"
 val oidcSupportVersion = "0.2.18"
 val logstashVersion = "7.2"
 
 plugins {
     val kotlinVersion = "1.7.22"
-    id("org.springframework.boot") version "2.7.6"
+    id("org.springframework.boot") version "3.0.1"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
@@ -21,6 +21,8 @@ apply(plugin = "io.spring.dependency-management")
 
 dependencies {
     implementation(kotlin("stdlib"))
+
+    runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")

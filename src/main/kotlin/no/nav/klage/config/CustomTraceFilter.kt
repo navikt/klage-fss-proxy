@@ -2,14 +2,14 @@ package no.nav.klage.config
 
 import brave.Tracer
 import brave.baggage.BaggageField
+import jakarta.servlet.FilterChain
+import jakarta.servlet.ServletRequest
+import jakarta.servlet.ServletResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Profile
 import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.GenericFilterBean
-import javax.servlet.FilterChain
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
 
 /**
  * Adding some custom NAV-specific attributes to standard Spring Sleuth
