@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val springSleuthVersion = "3.1.5"
 val tokenValidationVersion = "3.0.2"
 val oidcSupportVersion = "0.2.18"
 val logstashVersion = "7.2"
@@ -29,13 +28,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("commons-pool:commons-pool")
-    implementation("org.springframework.cloud:spring-cloud-starter-sleuth:$springSleuthVersion")
 
     implementation("no.nav.security:token-validation-spring:$tokenValidationVersion")
     implementation("no.nav.security:token-client-spring:$tokenValidationVersion")
     implementation("no.nav.security:oidc-spring-support:$oidcSupportVersion")
 
     implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation("io.micrometer:micrometer-observation")
+
     implementation("ch.qos.logback:logback-classic")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashVersion")
 }
