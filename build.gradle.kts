@@ -21,8 +21,6 @@ apply(plugin = "io.spring.dependency-management")
 dependencies {
     implementation(kotlin("stdlib"))
 
-    runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
-
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
