@@ -3,6 +3,9 @@ spring:
     name: klage-fss-proxy
   main:
     banner-mode: OFF
+  sleuth:
+    propagation:
+      type: w3c,b3
 
 server:
   port: 7081
