@@ -1,10 +1,11 @@
 package no.nav.klage.config
 
-import brave.baggage.BaggageField
 import io.micrometer.tracing.Tracer
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletRequest
 import jakarta.servlet.ServletResponse
+import no.nav.klage.util.getLogger
+import no.nav.klage.util.getSecureLogger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Profile
@@ -26,16 +27,17 @@ class CustomTraceFilter(
 
 ) : GenericFilterBean() {
 
+    companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
+        private val logger = getLogger(javaClass.enclosingClass)
+        private val secureLogger = getSecureLogger()
+    }
+
     override fun doFilter(
         request: ServletRequest?, response: ServletResponse,
         chain: FilterChain
     ) {
-        val currentSpan = tracer.currentSpan()
-
-        if (currentSpan != null) {
-            BaggageField.create(navCallIdFieldName).updateValue(currentSpan.context().traceId())
-            BaggageField.create(navConsumerIdFieldName).updateValue(appName)
-        }
+        tracer.createBaggage(navCallIdFieldName, tracer.currentTraceContext().context()!!.traceId())
 
         chain.doFilter(request, response)
     }
