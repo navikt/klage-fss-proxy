@@ -1,3 +1,5 @@
+navCallIdName: nav-callid
+
 spring:
   application:
     name: klage-fss-proxy
@@ -28,10 +30,10 @@ management:
   tracing:
     baggage:
       remote-fields:
-        - Nav-CallId
+        - ${navCallIdName}
       correlation:
         fields:
-          - Nav-CallId
+          - ${navCallIdName}
 
 SERVICE_USER_USERNAME: srvklage-dittnav
 
@@ -52,6 +54,3 @@ no.nav.security.jwt:
           client-id: ${AZURE_APP_CLIENT_ID}
           client-secret: ${AZURE_APP_CLIENT_SECRET}
           client-auth-method: client_secret_basic
-
-navCallId: Nav-Callid
-navConsumerId: Nav-Consumer-Id
