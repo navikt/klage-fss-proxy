@@ -1,44 +1,40 @@
 package no.nav.klage.config
 
-import brave.Tracer
-import brave.baggage.BaggageField
+import io.micrometer.tracing.Tracer
+import jakarta.servlet.FilterChain
+import jakarta.servlet.ServletRequest
+import jakarta.servlet.ServletResponse
+import no.nav.klage.util.getLogger
+import no.nav.klage.util.getSecureLogger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Profile
 import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.GenericFilterBean
-import javax.servlet.FilterChain
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
 
 /**
- * Adding some custom NAV-specific attributes to standard Spring Sleuth
+ * Adding some custom NAV-specific attributes to standard Spring Sleuth/Micrometer
  */
 @Component
 @Profile("!local")
 @Order(-20)
-class CustomTraceFilter(private val tracer: Tracer) : GenericFilterBean() {
+class CustomTraceFilter(
+    private val tracer: Tracer,
+    @Value("\${navCallIdName}") private val navCallIdName: String,
+) : GenericFilterBean() {
 
-    @Value("\${spring.application.name}")
-    lateinit var appName: String
-
-    @Value("\${navCallId}")
-    lateinit var navCallId: String
-
-    @Value("\${navConsumerId}")
-    lateinit var navConsumerId: String
+    companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
+        private val logger = getLogger(javaClass.enclosingClass)
+        private val secureLogger = getSecureLogger()
+    }
 
     override fun doFilter(
         request: ServletRequest?, response: ServletResponse,
         chain: FilterChain
     ) {
-        val currentSpan = tracer.currentSpan()
-
-        val navCallIdField = BaggageField.create(navCallId)
-        navCallIdField.updateValue(tracer.currentSpan().context(), currentSpan.context().traceIdString())
-
-        val navConsumerIdField = BaggageField.create(navConsumerId)
-        navConsumerIdField.updateValue(tracer.currentSpan().context(), appName)
+        //Create if not exists
+        tracer.createBaggage(navCallIdName, tracer.currentTraceContext().context()!!.traceId())
 
         chain.doFilter(request, response)
     }

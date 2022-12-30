@@ -1,17 +1,10 @@
+navCallIdName: nav-callid
+
 spring:
   application:
     name: klage-fss-proxy
   main:
     banner-mode: OFF
-  sleuth:
-    propagation-keys:
-      - Nav-Callid
-      - Nav-Consumer-Id
-    log:
-      slf4j:
-        whitelisted-mdc-keys:
-          - Nav-Callid
-          - Nav-Consumer-Id
 
 server:
   port: 7081
@@ -28,11 +21,19 @@ management:
       include: info, health, metrics, prometheus
     base-path: "/internal"
   metrics:
-    export:
-      prometheus:
-        enabled: true
     tags:
       application: ${spring.application.name}
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  tracing:
+    baggage:
+      remote-fields:
+        - ${navCallIdName}
+      correlation:
+        fields:
+          - ${navCallIdName}
 
 SERVICE_USER_USERNAME: srvklage-dittnav
 
@@ -53,6 +54,3 @@ no.nav.security.jwt:
           client-id: ${AZURE_APP_CLIENT_ID}
           client-secret: ${AZURE_APP_CLIENT_SECRET}
           client-auth-method: client_secret_basic
-
-navCallId: Nav-Callid
-navConsumerId: Nav-Consumer-Id
