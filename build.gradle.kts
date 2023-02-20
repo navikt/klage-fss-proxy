@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val tokenValidationVersion = "3.0.2"
 val oidcSupportVersion = "0.2.18"
-val logstashVersion = "7.2"
+val logstashVersion = "7.3"
 
 plugins {
     val kotlinVersion = "1.8.10"
