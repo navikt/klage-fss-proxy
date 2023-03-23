@@ -21,6 +21,7 @@ class KlankeClient(
     }
 
     fun searchKlanke(klankeSearchInput: KlankeSearchInput): List<KlankeSearchHit> {
+        secureLogger.debug("Token sent to klanke: ${tokenService.getToken()}")
         return klankeWebClient.post()
             .uri { it.path("/api/saker.rest").build() }
             .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
