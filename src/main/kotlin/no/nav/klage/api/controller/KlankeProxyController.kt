@@ -24,10 +24,10 @@ class KlankeProxyController(
 
     @PostMapping("/search")
     fun searchKlanke(
-        @RequestBody proxyKlankeSearchInput: ProxyKlankeSearchInput,
-    ): List<KlankeSearchHitProper> {
-        secureLogger.debug("received searchKlage request: {}", proxyKlankeSearchInput)
+        @RequestBody klankeSearchInput: KlankeSearchInput,
+    ): List<KlankeSearchHit> {
+        secureLogger.debug("received searchKlage request: {}", klankeSearchInput)
 
-        return klankeClient.searchKlanke(KlankeSearchInput(fnr = proxyKlankeSearchInput.fnr)).map { KlankeSearchHitProper(sakId = it.sakId) }
+        return klankeClient.searchKlanke(KlankeSearchInput(fnr = klankeSearchInput.fnr)).map { KlankeSearchHit(sakId = it.sakId) }
     }
 }
