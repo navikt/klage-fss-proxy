@@ -10,5 +10,10 @@ data class KlankeSearchInput(
 )
 
 data class KlankeSearchHit(
+    val sakId: String,
+    val dummy: String? = ""
+)
+
+data class KlankeSearchHitProper(
     val sakId: String
 )
