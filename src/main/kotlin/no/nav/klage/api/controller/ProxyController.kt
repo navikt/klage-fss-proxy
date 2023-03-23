@@ -1,4 +1,4 @@
-package no.nav.klage.api
+package no.nav.klage.api.controller
 
 import no.nav.klage.clients.foerstesidegenerator.FoerstesideRequest
 import no.nav.klage.clients.foerstesidegenerator.FoerstesidegeneratorClient
