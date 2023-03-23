@@ -11,6 +11,7 @@ spec:
     application:
       enabled: true
       tenant: {{tenant}}
+      allowAllUsers: true
       claims:
         extra:
           - NAVident

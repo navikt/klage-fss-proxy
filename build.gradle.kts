@@ -27,6 +27,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("commons-pool:commons-pool")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
     implementation("no.nav.security:token-validation-spring:$tokenValidationVersion")
     implementation("no.nav.security:token-client-spring:$tokenValidationVersion")
     implementation("no.nav.security:oidc-spring-support:$oidcSupportVersion")

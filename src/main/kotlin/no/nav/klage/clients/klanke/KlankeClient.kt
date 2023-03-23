@@ -20,13 +20,14 @@ class KlankeClient(
         private val secureLogger = getSecureLogger()
     }
 
-    fun searchKlanke(klankeSearchInput: KlankeSearchInput): KlankeSearchHit {
+    fun searchKlanke(klankeSearchInput: KlankeSearchInput): List<KlankeSearchHit> {
+        secureLogger.debug("Token sent to klanke: ${tokenService.getToken()}")
         return klankeWebClient.post()
             .uri { it.path("/api/saker.rest").build() }
             .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
             .bodyValue(klankeSearchInput)
             .retrieve()
-            .bodyToMono<KlankeSearchHit>()
+            .bodyToMono<List<KlankeSearchHit>>()
             .block() ?: throw RuntimeException("Response was null")
     }
 }
