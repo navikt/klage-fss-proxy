@@ -1,8 +1,8 @@
 package no.nav.klage.api.controller
 
 import no.nav.klage.clients.klanke.KlankeClient
+import no.nav.klage.clients.klanke.KlankeSearchHit
 import no.nav.klage.clients.klanke.KlankeSearchInput
-import no.nav.klage.clients.klanke.KlankeSearchOutput
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getSecureLogger
@@ -27,11 +27,10 @@ class KlankeProxyController(
     @PostMapping("/search")
     fun searchKlanke(
         @RequestBody klankeSearchInput: KlankeSearchInput,
-    ): KlankeSearchOutput {
+    ): List<KlankeSearchHit> {
         secureLogger.debug("received searchKlage request: {}", klankeSearchInput)
 
-        return KlankeSearchOutput(
-            klankeSearchHits = setOf(klankeClient.searchKlanke(klankeSearchInput))
-        )
+        return klankeClient.searchKlanke(klankeSearchInput)
+
     }
 }
