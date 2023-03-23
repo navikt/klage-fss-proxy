@@ -20,6 +20,12 @@ spec:
         - application: klage-dittnav-api
           namespace: klage
           cluster: {{inboundCluster}}
+        - application: kabal-api
+          namespace: klage
+          cluster: {{inboundCluster}}
+        - application: kabin-api
+          namespace: klage
+          cluster: {{inboundCluster}}
   port: 7081
   liveness:
     path: /internal/health

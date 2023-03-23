@@ -1,3 +1,5 @@
 SECURITY_TOKEN_SERVICE_REST_URL: https://security-token-service.nais.preprod.local
 
 FOERSTESIDEGENERATOR_BASE_URL: https://foerstesidegenerator-q1.dev.intern.nav.no/api/foerstesidegenerator/v1/foersteside
+
+KLANKE_BASE_URL: https://wasapp-q1.adeo.no/KlageOgAnke

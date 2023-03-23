@@ -2,3 +2,5 @@ TENANT_ID: 62366534-1ec3-4962-8869-9b5535279d0b
 SECURITY_TOKEN_SERVICE_REST_URL: https://security-token-service.nais.adeo.no
 
 FOERSTESIDEGENERATOR_BASE_URL: https://foerstesidegenerator.intern.nav.no/api/foerstesidegenerator/v1/foersteside
+
+KLANKE_BASE_URL: https://wasapp.adeo.no/KlageOgAnke
