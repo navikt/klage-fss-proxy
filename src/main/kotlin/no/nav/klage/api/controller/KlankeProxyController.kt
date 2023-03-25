@@ -7,6 +7,8 @@ import no.nav.klage.util.getSecureLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.context.annotation.Profile
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Profile("dev-fss")
 @RestController
@@ -22,12 +24,21 @@ class KlankeProxyController(
         private val secureLogger = getSecureLogger()
     }
 
-    @PostMapping("/search")
+    @PostMapping("/saker")
     fun searchKlanke(
         @RequestBody klankeSearchInput: KlankeSearchInput,
-    ): List<KlankeSearchHit> {
-        secureLogger.debug("received searchKlage request: {}", klankeSearchInput)
+    ): List<SakFromKlanke> {
+        secureLogger.debug("received searchKlanke request: {}", klankeSearchInput)
 
-        return klankeClient.searchKlanke(KlankeSearchInput(fnr = klankeSearchInput.fnr)).map { KlankeSearchHit(sakId = it.sakId) }
+        return klankeClient.searchKlanke(KlankeSearchInput(fnr = klankeSearchInput.fnr)).map {
+            SakFromKlanke(
+                sakId = it.sakId,
+                fagsakId = it.fagsakId,
+                tema = it.tema,
+                utfall = it.utfall,
+                enhetsnummer = it.enhetsnummer,
+                vedtaksdatoAsString = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE)
+            )
+        }
     }
 }
