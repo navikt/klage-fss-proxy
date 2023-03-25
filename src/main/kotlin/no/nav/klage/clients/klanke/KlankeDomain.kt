@@ -21,5 +21,5 @@ data class SakFromKlanke(
     val tema: String,
     val utfall: String,
     val enhetsnummer: String,
-    val vedtaksdatoAsString: LocalDate,
+    val vedtaksdato: LocalDate,
 )
