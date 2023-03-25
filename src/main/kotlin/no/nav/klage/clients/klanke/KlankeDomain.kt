@@ -3,7 +3,8 @@ package no.nav.klage.clients.klanke
 import java.time.LocalDate
 
 data class KlankeSearchInput(
-    val fnr: String
+    val fnr: String,
+    val sakstype: String,
 )
 
 data class KlankeSearchHit(

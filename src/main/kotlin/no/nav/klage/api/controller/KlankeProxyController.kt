@@ -30,7 +30,7 @@ class KlankeProxyController(
     ): List<SakFromKlanke> {
         secureLogger.debug("received searchKlanke request: {}", klankeSearchInput)
 
-        return klankeClient.searchKlanke(KlankeSearchInput(fnr = klankeSearchInput.fnr)).map {
+        return klankeClient.searchKlanke(klankeSearchInput).map {
             SakFromKlanke(
                 sakId = it.sakId,
                 fagsakId = it.fagsakId,
