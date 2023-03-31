@@ -24,3 +24,8 @@ data class SakFromKlanke(
     val enhetsnummer: String,
     val vedtaksdato: LocalDate,
 )
+
+data class HandledInKabalInput(
+    //aka frist
+    val svardatoAsString: String
+)
