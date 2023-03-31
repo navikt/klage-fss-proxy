@@ -29,5 +29,15 @@ class KlankeClient(
             .bodyToMono<List<KlankeSearchHit>>()
             .block() ?: throw RuntimeException("Response was null")
     }
+
+    fun setHandledInKabal(sakId: String, input: HandledInKabalInput) {
+        klankeWebClient.post()
+            .uri { it.path("/api/saker/{sakId}/handledinkabal.rest").build(sakId) }
+            .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
+            .bodyValue(input)
+            .retrieve()
+            .bodyToMono<Unit>()
+            .block()
+    }
 }
 

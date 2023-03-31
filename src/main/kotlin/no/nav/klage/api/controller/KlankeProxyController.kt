@@ -1,6 +1,9 @@
 package no.nav.klage.api.controller
 
-import no.nav.klage.clients.klanke.*
+import no.nav.klage.api.controller.input.HandledInKabalInput
+import no.nav.klage.clients.klanke.KlankeClient
+import no.nav.klage.clients.klanke.KlankeSearchInput
+import no.nav.klage.clients.klanke.SakFromKlanke
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getSecureLogger
@@ -40,5 +43,18 @@ class KlankeProxyController(
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE)
             )
         }
+    }
+
+    @PostMapping("/saker/{sakId}/handledinkabal")
+    fun setHandledInKabal(
+        @PathVariable("sakId") sakId: String,
+        @RequestBody handledInKabalInput: HandledInKabalInput,
+    ) {
+        secureLogger.debug("received setHandledInKabal request for sak {}: {}", sakId, handledInKabalInput)
+
+        return klankeClient.setHandledInKabal(
+            sakId = sakId,
+            input = no.nav.klage.clients.klanke.HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString)
+        )
     }
 }
