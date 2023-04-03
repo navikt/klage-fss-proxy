@@ -39,5 +39,14 @@ class KlankeClient(
             .bodyToMono<Unit>()
             .block()
     }
+
+    fun getSak(sakId: String): KlankeSearchHit {
+        return klankeWebClient.get()
+            .uri { it.path("/api/saker/{sakId}/details.rest").build(sakId) }
+            .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
+            .retrieve()
+            .bodyToMono<KlankeSearchHit>()
+            .block() ?: throw RuntimeException("Response was null")
+    }
 }
 

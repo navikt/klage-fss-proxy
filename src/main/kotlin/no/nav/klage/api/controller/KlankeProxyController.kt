@@ -57,4 +57,24 @@ class KlankeProxyController(
             input = no.nav.klage.clients.klanke.HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString)
         )
     }
+
+    @GetMapping("/saker/{sakId}")
+    fun getSak(
+        @PathVariable("sakId") sakId: String,
+    ): SakFromKlanke {
+        secureLogger.debug("received getSak request for sak {}", sakId)
+
+        return klankeClient.getSak(
+            sakId = sakId,
+        ).let {
+            SakFromKlanke(
+                sakId = it.sakId,
+                fagsakId = it.fagsakId,
+                tema = it.tema,
+                utfall = it.utfall,
+                enhetsnummer = it.enhetsnummer,
+                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE)
+            )
+        }
+    }
 }
