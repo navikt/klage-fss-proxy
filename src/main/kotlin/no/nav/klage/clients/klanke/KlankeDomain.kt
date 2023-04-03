@@ -14,6 +14,7 @@ data class KlankeSearchHit(
     val utfall: String,
     val enhetsnummer: String,
     val vedtaksdatoAsString: String,
+    val fnr: String,
 )
 
 data class SakFromKlanke(
@@ -23,6 +24,7 @@ data class SakFromKlanke(
     val utfall: String,
     val enhetsnummer: String,
     val vedtaksdato: LocalDate,
+    val fnr: String,
 )
 
 data class HandledInKabalInput(

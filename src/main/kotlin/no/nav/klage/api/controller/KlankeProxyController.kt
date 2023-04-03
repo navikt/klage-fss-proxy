@@ -40,7 +40,8 @@ class KlankeProxyController(
                 tema = it.tema,
                 utfall = it.utfall,
                 enhetsnummer = it.enhetsnummer,
-                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE)
+                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
+                fnr = it.fnr,
             )
         }
     }
@@ -73,7 +74,8 @@ class KlankeProxyController(
                 tema = it.tema,
                 utfall = it.utfall,
                 enhetsnummer = it.enhetsnummer,
-                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE)
+                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
+                fnr = it.fnr,
             )
         }
     }
