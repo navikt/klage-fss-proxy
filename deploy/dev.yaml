@@ -2,6 +2,8 @@ ingress: https://klage-fss-proxy.dev-fss-pub.nais.io
 externalHosts:
   - login.microsoftonline.com
   - security-token-service.nais.preprod.local
+  - foerstesidegenerator-q1.dev.intern.nav.no
+  - wasapp-q1.adeo.no
 springProfile: dev-fss
 tenant: trygdeetaten.no
 inboundNamespace: klage
