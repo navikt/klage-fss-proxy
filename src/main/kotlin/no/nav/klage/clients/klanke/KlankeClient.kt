@@ -36,7 +36,7 @@ class KlankeClient(
             .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
             .bodyValue(input)
             .retrieve()
-            .bodyToMono<Unit>()
+            .bodyToMono<String>()
             .block()
     }
 
