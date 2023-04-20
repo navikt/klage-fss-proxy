@@ -3,6 +3,7 @@ package no.nav.klage.api.controller
 import no.nav.klage.api.controller.input.HandledInKabalInput
 import no.nav.klage.clients.klanke.KlankeClient
 import no.nav.klage.clients.klanke.KlankeSearchInput
+import no.nav.klage.clients.klanke.SakFinishedInput
 import no.nav.klage.clients.klanke.SakFromKlanke
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
@@ -56,6 +57,19 @@ class KlankeProxyController(
         return klankeClient.setHandledInKabal(
             sakId = sakId,
             input = no.nav.klage.clients.klanke.HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString)
+        )
+    }
+
+    @PostMapping("/saker/{sakId}/finished")
+    fun setSakFinished(
+        @PathVariable("sakId") sakId: String,
+        @RequestBody sakFinishedInput: SakFinishedInput,
+    ) {
+        secureLogger.debug("received setSakFinished request for sak {}: {}", sakId, sakFinishedInput)
+
+        return klankeClient.setSakFinished(
+            sakId = sakId,
+            input = sakFinishedInput,
         )
     }
 

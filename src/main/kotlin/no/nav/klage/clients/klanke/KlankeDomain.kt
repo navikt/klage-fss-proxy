@@ -31,3 +31,50 @@ data class HandledInKabalInput(
     //aka frist
     val svardatoAsString: String
 )
+
+data class SakFinishedInput(
+    val status: Status,
+    val nivaa: Nivaa,
+    val typeResultat: TypeResultat,
+    val utfall: Utfall,
+    val mottaker: Mottaker,
+)
+
+enum class Status {
+    RETURNERT_TK,
+    VIDERESENDT_TR,
+}
+
+enum class Nivaa {
+    KA, TR
+}
+
+enum class TypeResultat {
+    RESULTAT, INNSTILLING_2
+}
+
+enum class Utfall {
+    AVSLAG,
+    AVSLAG_GODKJENNING,
+    AVVIST_KLAGE,
+    ADVARSEL,
+    DELVIS_GODKJENNING,
+    DELVIS_INNVILGET,
+    DELVIS_TILBAKEBETALING,
+    GODKJENNING,
+    HENLAGT,
+    HENLAGT_BORTFALT,
+    INNVILGET,
+    IKKE_BEHANDLET,
+    IKKE_STRAFFBART,
+    IKKE_TILBAKEBETALING,
+    HJEMVIST_FOR_NY_BEHANDLING,
+    POLITIANMELDELSE,
+    TILBAKEBETALING,
+    TVANGSGEBYR_FASTHOLDES,
+    IKKE_BRUK
+}
+
+enum class Mottaker {
+    TRYGDEKONTOR, TRYGDERETTEN
+}
