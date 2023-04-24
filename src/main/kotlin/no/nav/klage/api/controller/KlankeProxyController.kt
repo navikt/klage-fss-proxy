@@ -60,6 +60,17 @@ class KlankeProxyController(
         )
     }
 
+    @PostMapping("/saker/{sakId}/assignedinkabal")
+    fun setAssignedInKabal(
+        @PathVariable("sakId") sakId: String,
+    ) {
+        secureLogger.debug("received setAssignedInKabal request for sak {}", sakId)
+
+        return klankeClient.setAssignedInKabal(
+            sakId = sakId,
+        )
+    }
+
     @PostMapping("/saker/{sakId}/finished")
     fun setSakFinished(
         @PathVariable("sakId") sakId: String,

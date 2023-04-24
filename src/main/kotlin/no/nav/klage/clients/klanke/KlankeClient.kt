@@ -40,6 +40,15 @@ class KlankeClient(
             .block()
     }
 
+    fun setAssignedInKabal(sakId: String) {
+        klankeWebClient.post()
+            .uri { it.path("/api/saker/{sakId}/assignedinkabal.rest").build(sakId) }
+            .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
+            .retrieve()
+            .bodyToMono<String>()
+            .block()
+    }
+
     fun setSakFinished(sakId: String, input: SakFinishedInput) {
         klankeWebClient.post()
             .uri { it.path("/api/saker/{sakId}/finished.rest").build(sakId) }
