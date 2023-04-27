@@ -38,6 +38,7 @@ data class SakFinishedInput(
     val typeResultat: TypeResultat,
     val utfall: Utfall,
     val mottaker: Mottaker,
+    val saksbehandlerIdent: String,
 )
 
 enum class Status {
