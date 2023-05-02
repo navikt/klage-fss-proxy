@@ -1,5 +1,6 @@
 package no.nav.klage.api.controller
 
+import no.nav.klage.api.controller.input.AssignedInKabalInput
 import no.nav.klage.api.controller.input.HandledInKabalInput
 import no.nav.klage.clients.klanke.KlankeClient
 import no.nav.klage.clients.klanke.KlankeSearchInput
@@ -63,11 +64,13 @@ class KlankeProxyController(
     @PostMapping("/saker/{sakId}/assignedinkabal")
     fun setAssignedInKabal(
         @PathVariable("sakId") sakId: String,
+        @RequestBody assignedInKabalInput: AssignedInKabalInput,
     ) {
-        secureLogger.debug("received setAssignedInKabal request for sak {}", sakId)
+        secureLogger.debug("received setAssignedInKabal request for sak {}: {}", sakId, assignedInKabalInput)
 
         return klankeClient.setAssignedInKabal(
             sakId = sakId,
+            input = no.nav.klage.clients.klanke.AssignedInKabalInput(saksbehandlerIdent = assignedInKabalInput.saksbehandlerIdent)
         )
     }
 
