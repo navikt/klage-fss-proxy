@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@Profile("dev-fss")
 @RestController
 @ProtectedWithClaims(issuer = ISSUER_AAD)
 @RequestMapping("/klanke")
