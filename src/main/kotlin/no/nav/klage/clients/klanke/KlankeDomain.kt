@@ -36,6 +36,10 @@ data class AssignedInKabalInput(
     val saksbehandlerIdent: String
 )
 
+data class FeilregistrertInKabalInput(
+    val saksbehandlerIdent: String
+)
+
 data class SakFinishedInput(
     val status: Status,
     val nivaa: Nivaa,
