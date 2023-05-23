@@ -1,16 +1,13 @@
 package no.nav.klage.api.controller
 
 import no.nav.klage.api.controller.input.AssignedInKabalInput
+import no.nav.klage.api.controller.input.FeilregistrertInKabalInput
 import no.nav.klage.api.controller.input.HandledInKabalInput
-import no.nav.klage.clients.klanke.KlankeClient
-import no.nav.klage.clients.klanke.KlankeSearchInput
-import no.nav.klage.clients.klanke.SakFinishedInput
-import no.nav.klage.clients.klanke.SakFromKlanke
+import no.nav.klage.clients.klanke.*
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getSecureLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
-import org.springframework.context.annotation.Profile
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -83,6 +80,19 @@ class KlankeProxyController(
         return klankeClient.setSakFinished(
             sakId = sakId,
             input = sakFinishedInput,
+        )
+    }
+
+    @PostMapping("/saker/{sakId}/feilregistrertinkabal")
+    fun setFeilregistrertInKabal(
+        @PathVariable("sakId") sakId: String,
+        @RequestBody feilregistrertInKabalInput: FeilregistrertInKabalInput,
+    ) {
+        secureLogger.debug("received setFeilregistrertInKabal request for sak {}", sakId)
+
+        return klankeClient.setFeilregistrertInKabal(
+            sakId = sakId,
+            input = no.nav.klage.clients.klanke.FeilregistrertInKabalInput(saksbehandlerIdent = feilregistrertInKabalInput.saksbehandlerIdent),
         )
     }
 

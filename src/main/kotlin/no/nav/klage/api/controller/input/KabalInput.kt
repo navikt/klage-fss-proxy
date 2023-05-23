@@ -7,3 +7,7 @@ data class HandledInKabalInput(
 data class AssignedInKabalInput(
     val saksbehandlerIdent: String,
 )
+
+data class FeilregistrertInKabalInput(
+    val saksbehandlerIdent: String,
+)

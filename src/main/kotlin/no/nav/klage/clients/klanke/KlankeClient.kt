@@ -60,6 +60,16 @@ class KlankeClient(
             .block()
     }
 
+    fun setFeilregistrertInKabal(sakId: String, input: FeilregistrertInKabalInput) {
+        klankeWebClient.post()
+            .uri { it.path("/api/saker/{sakId}/feilregistrert.rest").build(sakId) }
+            .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
+            .bodyValue(input)
+            .retrieve()
+            .bodyToMono<String>()
+            .block()
+    }
+
     fun getSak(sakId: String): KlankeSearchHit {
         return klankeWebClient.get()
             .uri { it.path("/api/saker/{sakId}/details.rest").build(sakId) }
