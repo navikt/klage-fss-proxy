@@ -10,6 +10,7 @@ data class HandledInKabalInput(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class AssignedInKabalInput(
     val saksbehandlerIdent: String,
+    val enhetsnummer: String?,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
