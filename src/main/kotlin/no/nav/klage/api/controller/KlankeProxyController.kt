@@ -66,7 +66,10 @@ class KlankeProxyController(
 
         return klankeClient.setAssignedInKabal(
             sakId = sakId,
-            input = no.nav.klage.clients.klanke.AssignedInKabalInput(saksbehandlerIdent = assignedInKabalInput.saksbehandlerIdent)
+            input = no.nav.klage.clients.klanke.AssignedInKabalInput(
+                saksbehandlerIdent = assignedInKabalInput.saksbehandlerIdent,
+                enhetsnummer = assignedInKabalInput.enhetsnummer
+            )
         )
     }
 

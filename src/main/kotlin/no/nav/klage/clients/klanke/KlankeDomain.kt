@@ -33,7 +33,8 @@ data class HandledInKabalInput(
 )
 
 data class AssignedInKabalInput(
-    val saksbehandlerIdent: String
+    val saksbehandlerIdent: String,
+    val enhetsnummer: String?
 )
 
 data class FeilregistrertInKabalInput(
