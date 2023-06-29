@@ -32,6 +32,15 @@ data class HandledInKabalInput(
     val svardatoAsString: String
 )
 
+data class AssignedInKabalInput(
+    val saksbehandlerIdent: String,
+    val enhetsnummer: String?
+)
+
+data class FeilregistrertInKabalInput(
+    val saksbehandlerIdent: String
+)
+
 data class SakFinishedInput(
     val status: Status,
     val nivaa: Nivaa,
