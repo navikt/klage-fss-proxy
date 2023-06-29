@@ -104,4 +104,25 @@ class KlankeProxyController(
             )
         }
     }
+
+    @GetMapping("/anysaker/{sakId}")
+    fun getAnySak(
+        @PathVariable("sakId") sakId: String,
+    ): SakFromKlanke {
+        secureLogger.debug("received getAnySak request for sak {}", sakId)
+
+        return klankeClient.getAnySak(
+            sakId = sakId,
+        ).let {
+            SakFromKlanke(
+                sakId = it.sakId,
+                fagsakId = it.fagsakId,
+                tema = it.tema,
+                utfall = it.utfall,
+                enhetsnummer = it.enhetsnummer,
+                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
+                fnr = it.fnr,
+            )
+        }
+    }
 }
