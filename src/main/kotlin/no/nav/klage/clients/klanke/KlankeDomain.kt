@@ -88,3 +88,7 @@ enum class Utfall {
 enum class Mottaker {
     TRYGDEKONTOR, TRYGDERETTEN
 }
+
+data class Access(
+    val access: Boolean
+)

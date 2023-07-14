@@ -140,4 +140,11 @@ class KlankeProxyController(
             )
         }
     }
+
+    @GetMapping("/access")
+    fun checkAccess(): Access {
+        secureLogger.debug("check access")
+
+        return klankeClient.checkAccess()
+    }
 }

@@ -87,5 +87,14 @@ class KlankeClient(
             .bodyToMono<KlankeSearchHit>()
             .block() ?: throw RuntimeException("Response was null")
     }
+
+    fun checkAccess(): Access {
+        return klankeWebClient.get()
+            .uri { it.path("/api/access.rest").build() }
+            .header(HttpHeaders.AUTHORIZATION, "Bearer ${tokenService.getToken()}")
+            .retrieve()
+            .bodyToMono<Access>()
+            .block() ?: throw RuntimeException("Response was null")
+    }
 }
 
