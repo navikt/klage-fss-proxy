@@ -34,7 +34,7 @@ class CustomTraceFilter(
         chain: FilterChain
     ) {
         //Create if not exists
-        tracer.createBaggage(navCallIdName, tracer.currentTraceContext().context()!!.traceId())
+        tracer.createBaggageInScope(navCallIdName, tracer.currentTraceContext().context()!!.traceId())
 
         chain.doFilter(request, response)
     }
