@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val tokenValidationVersion = "3.1.7"
+val tokenValidationVersion = "3.1.8"
 val oidcSupportVersion = "0.2.18"
 val logstashVersion = "7.4"
 
 plugins {
-    val kotlinVersion = "1.9.10"
-    id("org.springframework.boot") version "3.1.4"
+    val kotlinVersion = "1.9.20"
+    id("org.springframework.boot") version "3.1.5"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
