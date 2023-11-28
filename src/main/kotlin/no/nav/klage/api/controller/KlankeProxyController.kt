@@ -40,6 +40,7 @@ class KlankeProxyController(
                 enhetsnummer = it.enhetsnummer,
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
                 fnr = it.fnr,
+                sakstype = it.sakId
             )
         }
     }
@@ -116,6 +117,7 @@ class KlankeProxyController(
                 enhetsnummer = it.enhetsnummer,
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
                 fnr = it.fnr,
+                sakstype = it.sakstype,
             )
         }
     }
@@ -137,6 +139,7 @@ class KlankeProxyController(
                 enhetsnummer = it.enhetsnummer,
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
                 fnr = it.fnr,
+                sakstype = it.sakstype,
             )
         }
     }
