@@ -1,12 +1,15 @@
 package no.nav.klage.clients.klanke
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.time.LocalDate
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class KlankeSearchInput(
     val fnr: String,
     val sakstype: String,
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class KlankeSearchHit(
     val sakId: String,
     val fagsakId: String,
@@ -17,6 +20,7 @@ data class KlankeSearchHit(
     val fnr: String,
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class SakFromKlanke(
     val sakId: String,
     val fagsakId: String,
@@ -27,20 +31,24 @@ data class SakFromKlanke(
     val fnr: String,
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class HandledInKabalInput(
     //aka frist
     val svardatoAsString: String
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class AssignedInKabalInput(
     val saksbehandlerIdent: String,
     val enhetsnummer: String?
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class FeilregistrertInKabalInput(
     val saksbehandlerIdent: String
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class SakFinishedInput(
     val status: Status,
     val nivaa: Nivaa,
