@@ -40,7 +40,7 @@ class KlankeProxyController(
                 enhetsnummer = it.enhetsnummer,
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
                 fnr = it.fnr,
-                sakstype = it.sakId
+                sakstype = it.sakstype,
             )
         }
     }
