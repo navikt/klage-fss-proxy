@@ -125,7 +125,7 @@ class KlankeProxyController(
 
 
 
-    @PostMapping("/saker/{sakId}/appaccess")
+    @PostMapping("/saker/{sakId}")
     fun getSakAppAccess(
         @PathVariable("sakId") sakId: String,
         @RequestBody input: GetSakWithSaksbehandlerIdent,
