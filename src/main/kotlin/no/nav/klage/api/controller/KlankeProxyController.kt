@@ -2,6 +2,7 @@ package no.nav.klage.api.controller
 
 import no.nav.klage.api.controller.input.AssignedInKabalInput
 import no.nav.klage.api.controller.input.FeilregistrertInKabalInput
+import no.nav.klage.api.controller.input.GetSakWithSaksbehandlerIdent
 import no.nav.klage.api.controller.input.HandledInKabalInput
 import no.nav.klage.clients.klanke.*
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
@@ -108,6 +109,32 @@ class KlankeProxyController(
 
         return klankeClient.getSak(
             sakId = sakId,
+        ).let {
+            SakFromKlanke(
+                sakId = it.sakId,
+                fagsakId = it.fagsakId,
+                tema = it.tema,
+                utfall = it.utfall,
+                enhetsnummer = it.enhetsnummer,
+                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
+                fnr = it.fnr,
+                sakstype = it.sakstype,
+            )
+        }
+    }
+
+
+
+    @PostMapping("/saker/{sakId}/appaccess")
+    fun getSakAppAccess(
+        @PathVariable("sakId") sakId: String,
+        @RequestBody input: GetSakWithSaksbehandlerIdent,
+    ): SakFromKlanke {
+        secureLogger.debug("received getSakAppAccess request for sak {}", sakId)
+
+        return klankeClient.getSakAppAccess(
+            sakId = sakId,
+            input = GetSakAppAccessInput(saksbehandlerIdent = input.saksbehandlerIdent),
         ).let {
             SakFromKlanke(
                 sakId = it.sakId,
