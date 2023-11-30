@@ -46,6 +46,11 @@ data class AssignedInKabalInput(
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+data class GetSakAppAccessInput(
+    val saksbehandlerIdent: String
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class FeilregistrertInKabalInput(
     val saksbehandlerIdent: String
 )

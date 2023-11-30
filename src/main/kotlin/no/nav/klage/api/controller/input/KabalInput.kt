@@ -17,3 +17,8 @@ data class AssignedInKabalInput(
 data class FeilregistrertInKabalInput(
     val saksbehandlerIdent: String,
 )
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class GetSakWithSaksbehandlerIdent(
+    val saksbehandlerIdent: String,
+)
