@@ -7,6 +7,7 @@ import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getSecureLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
+import no.nav.security.token.support.core.api.Unprotected
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseBody
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@ProtectedWithClaims(issuer = ISSUER_AAD)
+//@ProtectedWithClaims(issuer = ISSUER_AAD)
+//TODO: Unprotected only for testing
+@Unprotected
 class DokDistKanalProxyController(
     private val dokDistKanalClient: DokDistKanalClient
 ) {
