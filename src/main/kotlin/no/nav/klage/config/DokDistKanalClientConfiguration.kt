@@ -26,10 +26,6 @@ class DokDistKanalClientConfiguration(
         return webClientBuilder
             .baseUrl(dokDistKanalURL)
             .defaultHeader("Nav-Consumer-Id", "klage-fss-proxy")
-            .clientConnector(
-                ReactorClientHttpConnector(
-                    HttpClient.create().proxyWithSystemProperties())
-            )
             .build()
     }
 }
