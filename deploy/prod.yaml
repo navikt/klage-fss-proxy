@@ -3,6 +3,7 @@ externalHosts:
   - login.microsoftonline.com
   - security-token-service.nais.adeo.no
   - foerstesidegenerator.intern.nav.no
+  - dokdistkanal.intern.nav.no
   - wasapp.adeo.no
 springProfile: prod-fss
 tenant: nav.no
