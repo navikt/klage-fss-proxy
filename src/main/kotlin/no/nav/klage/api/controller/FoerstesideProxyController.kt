@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @ProtectedWithClaims(issuer = ISSUER_AAD)
-class ProxyController(private val foerstesidegeneratorClient: FoerstesidegeneratorClient) {
+class FoerstesideProxyController(private val foerstesidegeneratorClient: FoerstesidegeneratorClient) {
 
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
