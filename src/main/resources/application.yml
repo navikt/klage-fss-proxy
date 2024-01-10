@@ -42,6 +42,7 @@ no.nav.security.jwt:
     aad:
       discoveryurl: ${AZURE_APP_WELL_KNOWN_URL}
       accepted_audience: ${AZURE_APP_CLIENT_ID}
+      proxyurl: ${HTTP_PROXY}
   client:
     registration:
       saf-onbehalfof:
