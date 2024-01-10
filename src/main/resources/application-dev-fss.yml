@@ -1,3 +1,4 @@
+TENANT_ID: 966ac572-f5b7-4bbe-aa88-c76419c0f851
 SECURITY_TOKEN_SERVICE_REST_URL: https://security-token-service.nais.preprod.local
 
 FOERSTESIDEGENERATOR_BASE_URL: https://foerstesidegenerator-q1.dev.intern.nav.no/api/foerstesidegenerator/v1/foersteside
@@ -8,3 +9,4 @@ DOK_DIST_KANAL_URL: https://dokdistkanal-q1.dev.intern.nav.no/rest/bestemDistrib
 DOK_DIST_KANAL_SCOPE: dev-fss.teamdokumenthandtering.dokdistkanal
 
 SAF_SCOPE: dev-fss.teamdokumenthandtering.saf-q1
+

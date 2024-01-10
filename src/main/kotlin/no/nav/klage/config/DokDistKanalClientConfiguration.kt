@@ -4,7 +4,9 @@ import no.nav.klage.util.getLogger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.client.reactive.ReactorClientHttpConnector
 import org.springframework.web.reactive.function.client.WebClient
+import reactor.netty.http.client.HttpClient
 
 @Configuration
 class DokDistKanalClientConfiguration(
@@ -23,6 +25,11 @@ class DokDistKanalClientConfiguration(
     fun dokDistKanalWebClient(): WebClient {
         return webClientBuilder
             .baseUrl(dokDistKanalURL)
+            .defaultHeader("Nav-Consumer-Id", "klage-fss-proxy")
+            .clientConnector(
+                ReactorClientHttpConnector(
+                    HttpClient.create().proxyWithSystemProperties())
+            )
             .build()
     }
 }
