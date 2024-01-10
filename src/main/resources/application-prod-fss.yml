@@ -7,3 +7,5 @@ KLANKE_BASE_URL: https://wasapp.adeo.no/KlageOgAnke
 
 DOK_DIST_KANAL_URL: https://dokdistkanal.intern.nav.no/rest/bestemDistribusjonskanal
 DOK_DIST_KANAL_SCOPE: prod-fss.teamdokumenthandtering.dokdistkanal
+
+SAF_SCOPE: prod-fss.teamdokumenthandtering.saf

@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-//@ProtectedWithClaims(issuer = ISSUER_AAD)
-//TODO: Unprotected only for testing
-@Unprotected
+@ProtectedWithClaims(issuer = ISSUER_AAD)
 class DokDistKanalProxyController(
     private val dokDistKanalClient: DokDistKanalClient
 ) {
