@@ -42,7 +42,7 @@ no.nav.security.jwt:
     aad:
       discoveryurl: ${AZURE_APP_WELL_KNOWN_URL}
       accepted_audience: ${AZURE_APP_CLIENT_ID}
-      proxyurl: http://webproxy-nais.nav.no:8088
+      proxyurl: ${HTTPS_PROXY}
   client:
     registration:
       saf-onbehalfof:
