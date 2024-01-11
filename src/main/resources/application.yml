@@ -36,6 +36,7 @@ management:
           - ${navCallIdName}
 
 SERVICE_USER_USERNAME: srvklage-dittnav
+TIMEOUT: 15000
 
 no.nav.security.jwt:
   issuer:
