@@ -5,6 +5,7 @@ spring:
     name: klage-fss-proxy
   main:
     banner-mode: OFF
+    allow-bean-definition-overriding: true
 
 server:
   port: 7081
