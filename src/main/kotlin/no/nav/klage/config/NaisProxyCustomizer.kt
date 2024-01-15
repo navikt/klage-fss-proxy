@@ -1,5 +1,6 @@
 package no.nav.klage.config
 
+import no.nav.klage.util.getLogger
 import no.nav.security.token.support.client.spring.oauth2.DefaultOAuth2HttpClient
 import org.apache.hc.client5.http.classic.HttpClient
 import org.apache.hc.client5.http.config.RequestConfig
@@ -47,6 +48,9 @@ fun oAuth2HttpClient(): DefaultOAuth2HttpClient {
                         context: HttpContext,
                     ): HttpHost? {
                         return if (target.hostName.contains("microsoft")) {
+                            getLogger(javaClass.enclosingClass).debug("Determining proxy.")
+                            getLogger(javaClass.enclosingClass).debug("Target: {}", target)
+                            getLogger(javaClass.enclosingClass).debug("Context: {}", context)
                             super.determineProxy(target, context)
                         } else {
                             null
