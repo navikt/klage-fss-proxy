@@ -101,30 +101,6 @@ class KlankeProxyController(
         )
     }
 
-    @GetMapping("/saker/{sakId}")
-    fun getSak(
-        @PathVariable("sakId") sakId: String,
-    ): SakFromKlanke {
-        secureLogger.debug("received getSak request for sak {}", sakId)
-
-        return klankeClient.getSak(
-            sakId = sakId,
-        ).let {
-            SakFromKlanke(
-                sakId = it.sakId,
-                fagsakId = it.fagsakId,
-                tema = it.tema,
-                utfall = it.utfall,
-                enhetsnummer = it.enhetsnummer,
-                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
-                fnr = it.fnr,
-                sakstype = it.sakstype,
-            )
-        }
-    }
-
-
-
     @PostMapping("/saker/{sakId}")
     fun getSakAppAccess(
         @PathVariable("sakId") sakId: String,
@@ -135,28 +111,6 @@ class KlankeProxyController(
         return klankeClient.getSakAppAccess(
             sakId = sakId,
             input = GetSakAppAccessInput(saksbehandlerIdent = input.saksbehandlerIdent),
-        ).let {
-            SakFromKlanke(
-                sakId = it.sakId,
-                fagsakId = it.fagsakId,
-                tema = it.tema,
-                utfall = it.utfall,
-                enhetsnummer = it.enhetsnummer,
-                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
-                fnr = it.fnr,
-                sakstype = it.sakstype,
-            )
-        }
-    }
-
-    @GetMapping("/anysaker/{sakId}")
-    fun getAnySak(
-        @PathVariable("sakId") sakId: String,
-    ): SakFromKlanke {
-        secureLogger.debug("received getAnySak request for sak {}", sakId)
-
-        return klankeClient.getAnySak(
-            sakId = sakId,
         ).let {
             SakFromKlanke(
                 sakId = it.sakId,
