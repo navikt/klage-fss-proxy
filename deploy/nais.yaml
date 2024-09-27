@@ -7,6 +7,10 @@ metadata:
     team: klage
 spec:
   image: {{ image }}
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
   azure:
     application:
       enabled: true
