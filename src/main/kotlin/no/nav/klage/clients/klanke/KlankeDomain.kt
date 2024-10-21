@@ -19,6 +19,8 @@ data class KlankeSearchHit(
     val vedtaksdatoAsString: String,
     val fnr: String,
     val sakstype: String,
+    val typeResultat: String,
+    val nivaa: String,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -31,6 +33,8 @@ data class SakFromKlanke(
     val vedtaksdato: LocalDate,
     val fnr: String,
     val sakstype: String,
+    val typeResultat: String,
+    val nivaa: String,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)

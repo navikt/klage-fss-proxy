@@ -42,6 +42,8 @@ class KlankeProxyController(
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
                 fnr = it.fnr,
                 sakstype = it.sakstype,
+                typeResultat = it.typeResultat,
+                nivaa = it.nivaa,
             )
         }
     }
@@ -55,7 +57,7 @@ class KlankeProxyController(
 
         return klankeClient.setHandledInKabal(
             sakId = sakId,
-            input = no.nav.klage.clients.klanke.HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString)
+            input = HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString)
         )
     }
 
@@ -121,6 +123,8 @@ class KlankeProxyController(
                 vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
                 fnr = it.fnr,
                 sakstype = it.sakstype,
+                typeResultat = it.typeResultat,
+                nivaa = it.nivaa,
             )
         }
     }
