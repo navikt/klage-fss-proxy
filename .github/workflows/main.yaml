@@ -16,10 +16,7 @@ jobs:
     uses: ./.github/workflows/deploy-to-dev.yaml
     with:
       e2e_tag: latest
-    secrets:
-      NAIS_DEPLOY_API_KEY: ${{ secrets.NAIS_DEPLOY_API_KEY }}
-      NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-  
+
   deploy_to_prod:
     name: Prod
     permissions:
@@ -27,6 +24,3 @@ jobs:
       id-token: write
     needs: deploy_to_dev
     uses: ./.github/workflows/deploy-to-prod.yaml
-    secrets:
-      NAIS_DEPLOY_API_KEY: ${{ secrets.NAIS_DEPLOY_API_KEY }}
-      NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}

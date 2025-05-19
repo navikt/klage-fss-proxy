@@ -8,13 +8,6 @@ on:
         required: false
         default: latest
         type: string
-    secrets:
-      NAIS_DEPLOY_API_KEY:
-        description: "API key for nais/deploy"
-        required: true
-      NAIS_WORKLOAD_IDENTITY_PROVIDER:
-        description: "Identity provider for nais/docker-build-push"
-        required: true
   workflow_dispatch:
     inputs:
       e2e_tag:
@@ -70,8 +63,6 @@ jobs:
           image_suffix: # optional, default empty
           cache_from: type=gha # optional, default type=gha
           cache_to: type=gha,mode=max # optional, default type=gha,mode=max
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }} # required, but is defined as an organization secret
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }} # required, but is defined as an organization variable
           build_args: |
             VERSION=${CI}
       
@@ -96,13 +87,12 @@ jobs:
         name: Checkout code
       
       - name: Deploy to dev
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           TEAM: klage
           CLUSTER: dev-fss
           VARS: deploy/dev.yaml
           RESOURCE: deploy/nais.yaml
-          APIKEY: ${{ secrets.NAIS_DEPLOY_API_KEY }}
           VAR: image=${{ needs.build.outputs.image }}
           IMAGE: ${{ needs.build.outputs.image }}
 
