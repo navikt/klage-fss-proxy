@@ -7,7 +7,6 @@ import no.nav.klage.api.controller.input.HandledInKabalInput
 import no.nav.klage.clients.klanke.*
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
-import no.nav.klage.util.getSecureLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
@@ -23,14 +22,13 @@ class KlankeProxyController(
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
-        private val secureLogger = getSecureLogger()
     }
 
     @PostMapping("/saker")
     fun searchKlanke(
         @RequestBody klankeSearchInput: KlankeSearchInput,
     ): List<SakFromKlanke> {
-        secureLogger.debug("received searchKlanke request: {}", klankeSearchInput)
+        logger.debug("received searchKlanke request: {}", klankeSearchInput)
 
         return klankeClient.searchKlanke(klankeSearchInput).map {
             SakFromKlanke(
@@ -53,7 +51,7 @@ class KlankeProxyController(
         @PathVariable("sakId") sakId: String,
         @RequestBody handledInKabalInput: HandledInKabalInput,
     ) {
-        secureLogger.debug("received setHandledInKabal request for sak {}: {}", sakId, handledInKabalInput)
+        logger.debug("received setHandledInKabal request for sak {}: {}", sakId, handledInKabalInput)
 
         return klankeClient.setHandledInKabal(
             sakId = sakId,
@@ -66,7 +64,7 @@ class KlankeProxyController(
         @PathVariable("sakId") sakId: String,
         @RequestBody assignedInKabalInput: AssignedInKabalInput,
     ) {
-        secureLogger.debug("received setAssignedInKabal request for sak {}: {}", sakId, assignedInKabalInput)
+        logger.debug("received setAssignedInKabal request for sak {}: {}", sakId, assignedInKabalInput)
 
         return klankeClient.setAssignedInKabal(
             sakId = sakId,
@@ -82,7 +80,7 @@ class KlankeProxyController(
         @PathVariable("sakId") sakId: String,
         @RequestBody sakFinishedInput: SakFinishedInput,
     ) {
-        secureLogger.debug("received setSakFinished request for sak {}: {}", sakId, sakFinishedInput)
+        logger.debug("received setSakFinished request for sak {}: {}", sakId, sakFinishedInput)
 
         return klankeClient.setSakFinished(
             sakId = sakId,
@@ -95,7 +93,7 @@ class KlankeProxyController(
         @PathVariable("sakId") sakId: String,
         @RequestBody feilregistrertInKabalInput: FeilregistrertInKabalInput,
     ) {
-        secureLogger.debug("received setFeilregistrertInKabal request for sak {}", sakId)
+        logger.debug("received setFeilregistrertInKabal request for sak {}", sakId)
 
         return klankeClient.setFeilregistrertInKabal(
             sakId = sakId,
@@ -108,7 +106,7 @@ class KlankeProxyController(
         @PathVariable("sakId") sakId: String,
         @RequestBody input: GetSakWithSaksbehandlerIdent,
     ): SakFromKlanke {
-        secureLogger.debug("received getSakAppAccess request for sak {}", sakId)
+        logger.debug("received getSakAppAccess request for sak {}", sakId)
 
         return klankeClient.getSakAppAccess(
             sakId = sakId,
@@ -131,7 +129,7 @@ class KlankeProxyController(
 
     @GetMapping("/access")
     fun checkAccess(): Access {
-        secureLogger.debug("check access")
+        logger.debug("check access")
 
         return klankeClient.checkAccess()
     }

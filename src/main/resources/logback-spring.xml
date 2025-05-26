@@ -10,7 +10,7 @@
             </encoder>
         </appender>
 
-        <logger name="secure" level="debug" additivity="false">
+        <logger name="team-logs" level="debug" additivity="false">
             <appender-ref ref="text"/>
         </logger>
 
@@ -20,21 +20,16 @@
     </springProfile>
 
     <springProfile name="!local">
-        <appender name="secureJson" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>/secure-logs/secure.log</file>
-            <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-                <fileNamePattern>/secure-logs/secure.log.%i</fileNamePattern>
-                <minIndex>1</minIndex>
-                <maxIndex>1</maxIndex>
-            </rollingPolicy>
-            <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-                <maxFileSize>50MB</maxFileSize>
-            </triggeringPolicy>
-            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <appender name="team-logs" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <destination>team-logs.nais-system:5170</destination>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <customFields>{"google_cloud_project":"${GOOGLE_CLOUD_PROJECT}","nais_namespace_name":"${NAIS_NAMESPACE}","nais_pod_name":"${HOSTNAME}","nais_container_name":"${NAIS_APP_NAME}"}</customFields>
+                <includeContext>false</includeContext>
+            </encoder>
         </appender>
 
-        <logger name="secure" level="debug" additivity="false">
-            <appender-ref ref="secureJson"/>
+        <logger name="team-logs" level="debug" additivity="false">
+            <appender-ref ref="team-logs"/>
         </logger>
 
         <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
@@ -46,7 +41,7 @@
         </root>
 
         <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="false">
-            <appender-ref ref="secureJson"/>
+            <appender-ref ref="json"/>
         </logger>
     </springProfile>
 

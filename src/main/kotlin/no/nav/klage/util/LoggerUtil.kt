@@ -5,4 +5,4 @@ import org.slf4j.LoggerFactory
 
 fun getLogger(forClass: Class<*>): Logger = LoggerFactory.getLogger(forClass)
 
-fun getSecureLogger(): Logger = LoggerFactory.getLogger("secure")
+fun getTeamLogger(): Logger = LoggerFactory.getLogger("team-logs")

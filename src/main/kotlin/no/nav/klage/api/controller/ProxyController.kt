@@ -4,7 +4,7 @@ import no.nav.klage.clients.foerstesidegenerator.FoerstesideRequest
 import no.nav.klage.clients.foerstesidegenerator.FoerstesidegeneratorClient
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
-import no.nav.klage.util.getSecureLogger
+import no.nav.klage.util.getTeamLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -22,7 +22,7 @@ class ProxyController(private val foerstesidegeneratorClient: Foerstesidegenerat
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
-        private val secureLogger = getSecureLogger()
+        private val teamLogger = getTeamLogger()
     }
 
     @PostMapping("/genererfoersteside")
@@ -30,7 +30,8 @@ class ProxyController(private val foerstesidegeneratorClient: Foerstesidegenerat
     fun createFoersteside(
         @RequestBody foerstesideRequest: FoerstesideRequest,
     ): ResponseEntity<ByteArray> {
-        secureLogger.debug("received foerstesideRequest: {}", foerstesideRequest)
+        logger.debug("createFoersteside called. See team-logs for more details.")
+        teamLogger.debug("received foerstesideRequest: {}", foerstesideRequest)
 
         val data = foerstesidegeneratorClient.createFoersteside(foerstesideRequest)
 

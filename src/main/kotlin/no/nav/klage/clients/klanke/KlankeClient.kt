@@ -2,7 +2,6 @@ package no.nav.klage.clients.klanke
 
 import no.nav.klage.service.TokenService
 import no.nav.klage.util.getLogger
-import no.nav.klage.util.getSecureLogger
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
@@ -17,7 +16,6 @@ class KlankeClient(
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
-        private val secureLogger = getSecureLogger()
     }
 
     fun searchKlanke(klankeSearchInput: KlankeSearchInput): List<KlankeSearchHit> {

@@ -31,6 +31,10 @@ spec:
         - application: kabin-api
           namespace: klage
           cluster: {{inboundCluster}}
+    outbound:
+      rules:
+        - application: logging
+          namespace: nais-system
   port: 7081
   liveness:
     path: /internal/health
@@ -58,8 +62,6 @@ spec:
   prometheus:
     enabled: true
     path: /internal/prometheus
-  secureLogs:
-    enabled: true
   webproxy: true
   envFrom:
     - secret: srvklage-dittnav
