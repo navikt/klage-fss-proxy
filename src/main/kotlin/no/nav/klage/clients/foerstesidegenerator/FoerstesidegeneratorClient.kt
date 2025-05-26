@@ -2,7 +2,7 @@ package no.nav.klage.clients.foerstesidegenerator
 
 import no.nav.klage.clients.sts.StsClient
 import no.nav.klage.util.getLogger
-import no.nav.klage.util.getSecureLogger
+import no.nav.klage.util.getTeamLogger
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
@@ -17,7 +17,7 @@ class FoerstesidegeneratorClient(
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
-        private val secureLogger = getSecureLogger()
+        private val teamLogger = getTeamLogger()
     }
 
     fun createFoersteside(foerstesideRequest: FoerstesideRequest): ByteArray {
@@ -33,8 +33,8 @@ class FoerstesidegeneratorClient(
 
             return res.foersteside
         }.onFailure {
-            secureLogger.error("Could not create foersteside", it)
+            teamLogger.error("Could not create foersteside", it)
         }
-        throw RuntimeException("Could not create foersteside. See secure logs.")
+        throw RuntimeException("Could not create foersteside. See team-logs.")
     }
 }

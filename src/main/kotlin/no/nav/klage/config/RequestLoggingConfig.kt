@@ -12,7 +12,7 @@ class RequestLoggingConfig {
         val filter = CommonsRequestLoggingFilter()
         filter.setIncludeQueryString(true)
         filter.setIncludePayload(false)
-        filter.setIncludeHeaders(true)
+        filter.setIncludeHeaders(false)
         filter.setIncludeClientInfo(true)
         return filter
     }
