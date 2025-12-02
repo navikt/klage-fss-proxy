@@ -7,7 +7,7 @@ val logstashVersion = "8.1"
 
 plugins {
     val kotlinVersion = "2.2.10"
-    id("org.springframework.boot") version "3.5.5"
+    id("org.springframework.boot") version "3.5.8"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
