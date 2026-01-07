@@ -8,4 +8,3 @@
  */
 
 rootProject.name = "klage-fss-proxy"
-include("app")
