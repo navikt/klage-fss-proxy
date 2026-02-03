@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val tokenValidationVersion = "6.0.2"
-val oidcSupportVersion = "0.2.18"
 val logstashVersion = "9.0"
 
 plugins {
@@ -33,7 +32,6 @@ dependencies {
 
     implementation("no.nav.security:token-validation-spring:$tokenValidationVersion")
     implementation("no.nav.security:token-client-spring:$tokenValidationVersion")
-    implementation("no.nav.security:oidc-spring-support:$oidcSupportVersion")
 
     implementation("ch.qos.logback:logback-classic")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashVersion")
