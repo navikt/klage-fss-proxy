@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val tokenValidationVersion = "5.0.30"
+val tokenValidationVersion = "6.0.2"
 val oidcSupportVersion = "0.2.18"
 val logstashVersion = "9.0"
 
 plugins {
-    val kotlinVersion = "2.2.21"
-    id("org.springframework.boot") version "4.0.0"
+    val kotlinVersion = "2.3.0"
+    id("org.springframework.boot") version "4.0.2"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
@@ -15,6 +15,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven("https://github-package-registry-mirror.gc.nav.no/cached/maven-release")
 }
 
 apply(plugin = "io.spring.dependency-management")
@@ -49,7 +50,7 @@ java.sourceCompatibility = JavaVersion.VERSION_21
 tasks.withType<KotlinCompile> {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_21)
-        freeCompilerArgs = listOf("-Xjsr305=strict")
+        freeCompilerArgs = listOf("-Xjsr305=strict", "-Xannotation-default-target=param-property")
     }
 }
 
