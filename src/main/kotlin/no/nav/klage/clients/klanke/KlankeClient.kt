@@ -3,6 +3,7 @@ package no.nav.klage.clients.klanke
 import no.nav.klage.service.TokenService
 import no.nav.klage.util.getLogger
 import org.springframework.http.HttpHeaders
+import org.springframework.resilience.annotation.Retryable
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
@@ -18,6 +19,7 @@ class KlankeClient(
         private val logger = getLogger(javaClass.enclosingClass)
     }
 
+    @Retryable
     fun searchKlanke(klankeSearchInput: KlankeSearchInput): List<KlankeSearchHit> {
         return klankeWebClient.post()
             .uri { it.path("/api/saker.rest").build() }
