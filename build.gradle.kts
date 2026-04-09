@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val tokenValidationVersion = "6.0.4"
+val tokenValidationVersion = "6.0.5"
 val logstashVersion = "9.0"
 
 plugins {
