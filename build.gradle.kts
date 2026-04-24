@@ -5,8 +5,8 @@ val tokenValidationVersion = "6.0.4"
 val logstashVersion = "9.0"
 
 plugins {
-    val kotlinVersion = "2.3.20"
-    id("org.springframework.boot") version "4.0.5"
+    val kotlinVersion = "2.3.21"
+    id("org.springframework.boot") version "4.0.6"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
