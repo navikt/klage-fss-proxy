@@ -15,7 +15,7 @@ jobs:
       id-token: write
     uses: ./.github/workflows/deploy-to-dev.yaml
     with:
-      e2e_tag: latest
+      e2e_tag: main
 
   deploy_to_prod:
     name: Prod
