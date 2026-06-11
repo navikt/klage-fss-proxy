@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val tokenValidationVersion = "6.0.7"
+val tokenValidationVersion = "6.0.10"
 val logstashVersion = "9.0"
 
 plugins {
-    val kotlinVersion = "2.3.21"
-    id("org.springframework.boot") version "4.0.6"
+    val kotlinVersion = "2.4.0"
+    id("org.springframework.boot") version "4.1.0"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
@@ -30,13 +30,13 @@ dependencies {
 
     //Fix vulnerabilities, while waiting for fix in Spring Boot.
     implementation("org.apache.tomcat.embed:tomcat-embed-core:11.0.22")
-    implementation("io.netty:netty-codec-http:4.2.14.Final")
-    implementation("io.netty:netty-codec-http2:4.2.14.Final")
-    implementation("io.netty:netty-codec-http3:4.2.14.Final")
-    implementation("io.netty:netty-codec-dns:4.2.14.Final")
-    implementation("io.netty:netty-codec-compression:4.2.14.Final")
-    implementation("io.netty:netty-transport-native-epoll:4.2.14.Final")
-    implementation("io.netty:netty-resolver-dns:4.2.14.Final")
+    implementation("io.netty:netty-codec-http:4.2.15.Final")
+    implementation("io.netty:netty-codec-http2:4.2.15.Final")
+    implementation("io.netty:netty-codec-http3:4.2.15.Final")
+    implementation("io.netty:netty-codec-dns:4.2.15.Final")
+    implementation("io.netty:netty-codec-compression:4.2.15.Final")
+    implementation("io.netty:netty-transport-native-epoll:4.2.15.Final")
+    implementation("io.netty:netty-resolver-dns:4.2.15.Final")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
