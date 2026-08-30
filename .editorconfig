@@ -1,0 +1,30 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{kt,kts}]
+# All four values below are already ktlint_official defaults. They are set explicitly
+# because IntelliJ's own formatter (Ctrl+Alt+L) does not know the ktlint defaults and
+# would otherwise format code that ktlintCheck then rejects.
+ktlint_code_style = ktlint_official
+max_line_length = 140
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+# Never collapse imports into wildcards. IntelliJ defaults to '*' after 5 classes (or 3
+# members) from the same package, which conflicts with ktlint's no-wildcard-imports rule.
+ij_kotlin_name_count_to_use_star_import = 2147483647
+ij_kotlin_name_count_to_use_star_import_for_members = 2147483647
+# Clears IntelliJ's built-in on-demand list (java.util.*, kotlinx.android.synthetic.**).
+ij_kotlin_packages_to_use_import_on_demand = unset
+
+[*.{yaml,yml,json}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

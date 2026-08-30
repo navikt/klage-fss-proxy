@@ -18,6 +18,30 @@ jobs:
         with:
           java-version: 21
           distribution: temurin
+      - name: ktlint
+        run: ./gradlew ktlintCheck
+        env:
+          ORG_GRADLE_PROJECT_githubUser: x-access-token
+          ORG_GRADLE_PROJECT_githubPassword: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload ktlint report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ktlint-report
+          path: build/reports/ktlint/
+          retention-days: 7
+      - name: detekt
+        run: ./gradlew detektMain detektTest
+        env:
+          ORG_GRADLE_PROJECT_githubUser: x-access-token
+          ORG_GRADLE_PROJECT_githubPassword: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload detekt report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detekt-report
+          path: build/reports/detekt/
+          retention-days: 7
       - name: test and build
         run: ./gradlew test build
         env:

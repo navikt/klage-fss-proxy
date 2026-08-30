@@ -39,24 +39,24 @@ data class SakFromKlanke(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class HandledInKabalInput(
-    //aka frist
-    val svardatoAsString: String
+    // aka frist
+    val svardatoAsString: String,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class AssignedInKabalInput(
     val saksbehandlerIdent: String,
-    val enhetsnummer: String?
+    val enhetsnummer: String?,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetSakAppAccessInput(
-    val saksbehandlerIdent: String
+    val saksbehandlerIdent: String,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FeilregistrertInKabalInput(
-    val saksbehandlerIdent: String
+    val saksbehandlerIdent: String,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -75,11 +75,13 @@ enum class Status {
 }
 
 enum class Nivaa {
-    KA, TR
+    KA,
+    TR,
 }
 
 enum class TypeResultat {
-    RESULTAT, INNSTILLING_2
+    RESULTAT,
+    INNSTILLING_2,
 }
 
 enum class Utfall {
@@ -101,13 +103,14 @@ enum class Utfall {
     POLITIANMELDELSE,
     TILBAKEBETALING,
     TVANGSGEBYR_FASTHOLDES,
-    IKKE_BRUK
+    IKKE_BRUK,
 }
 
 enum class Mottaker {
-    TRYGDEKONTOR, TRYGDERETTEN
+    TRYGDEKONTOR,
+    TRYGDERETTEN,
 }
 
 data class Access(
-    val access: Boolean
+    val access: Boolean,
 )

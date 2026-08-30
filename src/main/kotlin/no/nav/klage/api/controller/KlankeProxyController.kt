@@ -4,12 +4,22 @@ import no.nav.klage.api.controller.input.AssignedInKabalInput
 import no.nav.klage.api.controller.input.FeilregistrertInKabalInput
 import no.nav.klage.api.controller.input.GetSakWithSaksbehandlerIdent
 import no.nav.klage.api.controller.input.HandledInKabalInput
-import no.nav.klage.clients.klanke.*
+import no.nav.klage.clients.klanke.Access
+import no.nav.klage.clients.klanke.GetSakAppAccessInput
+import no.nav.klage.clients.klanke.KlankeClient
+import no.nav.klage.clients.klanke.KlankeSearchInput
+import no.nav.klage.clients.klanke.SakFinishedInput
+import no.nav.klage.clients.klanke.SakFromKlanke
 import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getTeamLogger
 import no.nav.security.token.support.core.api.ProtectedWithClaims
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -17,9 +27,8 @@ import java.time.format.DateTimeFormatter
 @ProtectedWithClaims(issuer = ISSUER_AAD)
 @RequestMapping("/klanke")
 class KlankeProxyController(
-    private val klankeClient: KlankeClient
+    private val klankeClient: KlankeClient,
 ) {
-
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
@@ -57,7 +66,9 @@ class KlankeProxyController(
 
         return klankeClient.setHandledInKabal(
             sakId = sakId,
-            input = HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString)
+            input =
+                no.nav.klage.clients.klanke
+                    .HandledInKabalInput(svardatoAsString = handledInKabalInput.fristAsString),
         )
     }
 
@@ -70,10 +81,11 @@ class KlankeProxyController(
 
         return klankeClient.setAssignedInKabal(
             sakId = sakId,
-            input = no.nav.klage.clients.klanke.AssignedInKabalInput(
-                saksbehandlerIdent = assignedInKabalInput.saksbehandlerIdent,
-                enhetsnummer = assignedInKabalInput.enhetsnummer
-            )
+            input =
+                no.nav.klage.clients.klanke.AssignedInKabalInput(
+                    saksbehandlerIdent = assignedInKabalInput.saksbehandlerIdent,
+                    enhetsnummer = assignedInKabalInput.enhetsnummer,
+                ),
         )
     }
 
@@ -99,7 +111,10 @@ class KlankeProxyController(
 
         return klankeClient.setFeilregistrertInKabal(
             sakId = sakId,
-            input = no.nav.klage.clients.klanke.FeilregistrertInKabalInput(saksbehandlerIdent = feilregistrertInKabalInput.saksbehandlerIdent),
+            input =
+                no.nav.klage.clients.klanke.FeilregistrertInKabalInput(
+                    saksbehandlerIdent = feilregistrertInKabalInput.saksbehandlerIdent,
+                ),
         )
     }
 
@@ -110,23 +125,24 @@ class KlankeProxyController(
     ): SakFromKlanke {
         teamLogger.debug("received getSakAppAccess request for sak {}", sakId)
 
-        return klankeClient.getSakAppAccess(
-            sakId = sakId,
-            input = GetSakAppAccessInput(saksbehandlerIdent = input.saksbehandlerIdent),
-        ).let {
-            SakFromKlanke(
-                sakId = it.sakId,
-                fagsakId = it.fagsakId,
-                tema = it.tema,
-                utfall = it.utfall,
-                enhetsnummer = it.enhetsnummer,
-                vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
-                fnr = it.fnr,
-                sakstype = it.sakstype,
-                typeResultat = it.typeResultat,
-                nivaa = it.nivaa,
-            )
-        }
+        return klankeClient
+            .getSakAppAccess(
+                sakId = sakId,
+                input = GetSakAppAccessInput(saksbehandlerIdent = input.saksbehandlerIdent),
+            ).let {
+                SakFromKlanke(
+                    sakId = it.sakId,
+                    fagsakId = it.fagsakId,
+                    tema = it.tema,
+                    utfall = it.utfall,
+                    enhetsnummer = it.enhetsnummer,
+                    vedtaksdato = LocalDate.parse(it.vedtaksdatoAsString, DateTimeFormatter.BASIC_ISO_DATE),
+                    fnr = it.fnr,
+                    sakstype = it.sakstype,
+                    typeResultat = it.typeResultat,
+                    nivaa = it.nivaa,
+                )
+            }
     }
 
     @GetMapping("/access")

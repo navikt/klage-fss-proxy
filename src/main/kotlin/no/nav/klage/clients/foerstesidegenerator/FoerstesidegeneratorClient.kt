@@ -13,7 +13,6 @@ class FoerstesidegeneratorClient(
     private val foerstesidegeneratorWebClient: WebClient,
     private val stsClient: StsClient,
 ) {
-
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
@@ -22,12 +21,14 @@ class FoerstesidegeneratorClient(
 
     fun createFoersteside(foerstesideRequest: FoerstesideRequest): ByteArray {
         runCatching {
-            val res = foerstesidegeneratorWebClient.post()
-                .header(HttpHeaders.AUTHORIZATION, "Bearer ${stsClient.oidcToken()}")
-                .bodyValue(foerstesideRequest)
-                .retrieve()
-                .bodyToMono<FoerstesideResponse>()
-                .block() ?: throw RuntimeException("Response was null")
+            val res =
+                foerstesidegeneratorWebClient
+                    .post()
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer ${stsClient.oidcToken()}")
+                    .bodyValue(foerstesideRequest)
+                    .retrieve()
+                    .bodyToMono<FoerstesideResponse>()
+                    .block() ?: throw RuntimeException("Response was null")
 
             logger.debug("Foersteside generated with loepenummer: {}", res.loepenummer)
 
