@@ -1,0 +1,80 @@
+# Detekt is deliberately scoped to a single rule: NamedArguments.
+#
+# Formatting is owned by ktlint (see .editorconfig), so detekt's formatting
+# ruleset is not on the classpath at all. Every other ruleset is switched off
+# here rather than left at its default, so that enabling a new rule stays a
+# conscious decision rather than a side effect of a detekt upgrade.
+
+comments:
+  active: false
+
+coroutines:
+  active: false
+
+empty-blocks:
+  active: false
+
+exceptions:
+  active: false
+
+naming:
+  active: false
+
+performance:
+  active: false
+
+potential-bugs:
+  active: false
+
+style:
+  active: false
+
+complexity:
+  active: true
+  CognitiveComplexMethod:
+    active: false
+  ComplexCondition:
+    active: false
+  ComplexInterface:
+    active: false
+  CyclomaticComplexMethod:
+    active: false
+  LabeledExpression:
+    active: false
+  LargeClass:
+    active: false
+  LongMethod:
+    active: false
+  LongParameterList:
+    active: false
+  MethodOverloading:
+    active: false
+  NestedBlockDepth:
+    active: false
+  NestedScopeFunctions:
+    active: false
+  ReplaceSafeCallChainWithRun:
+    active: false
+  StringLiteralDuplication:
+    active: false
+  TooManyFunctions:
+    active: false
+  NamedArguments:
+    active: true
+    # More than one argument must be named, so that call sites document which
+    # value goes where instead of relying on positional order.
+    allowedArguments: 1
+    # A call like foo(id) where the parameter is also named id gains nothing
+    # from being written as foo(id = id).
+    ignoreArgumentsMatchingNames: true
+    # Symmetric stdlib maths take two interchangeable operands, so naming them
+    # (max(a = 1, b = n)) is noise rather than documentation.
+    ignoreMethods:
+      - reason: 'Operands are symmetric and self-explanatory'
+        value: 'kotlin.math.max'
+      - reason: 'Operands are symmetric and self-explanatory'
+        value: 'kotlin.math.min'
+      - reason: 'Operands are symmetric and self-explanatory'
+        value: 'kotlin.comparisons.maxOf'
+      - reason: 'Operands are symmetric and self-explanatory'
+        value: 'kotlin.comparisons.minOf'

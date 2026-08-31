@@ -16,9 +16,8 @@ data class FoerstesideRequest(
     val dokumentlisteFoersteside: List<String> = ArrayList(),
     val foerstesidetype: Foerstesidetype? = null,
     val enhetsnummer: String? = null,
-    val arkivsak: Arkivsak? = null
+    val arkivsak: Arkivsak? = null,
 ) {
-
     enum class Spraakkode {
         NB,
         NN,
@@ -30,31 +29,31 @@ data class FoerstesideRequest(
         val adresselinje2: String? = null,
         val adresselinje3: String? = null,
         val postnummer: String? = null,
-        val poststed: String? = null
+        val poststed: String? = null,
     )
 
     class Avsender(
         val avsenderId: String? = null,
-        val avsenderNavn: String? = null
+        val avsenderNavn: String? = null,
     )
 
     data class Arkivsak(
         val arkivsaksystem: Arkivsaksystem? = null,
-        val arkivsaksnummer: String? = null
+        val arkivsaksnummer: String? = null,
     ) {
         enum class Arkivsaksystem {
             GSAK,
-            PSAK
+            PSAK,
         }
     }
 
     data class Bruker(
         val brukerId: String? = null,
-        val brukerType: Brukertype? = null
+        val brukerType: Brukertype? = null,
     ) {
         enum class Brukertype {
             PERSON,
-            ORGANISASJON
+            ORGANISASJON,
         }
     }
 
@@ -62,7 +61,7 @@ data class FoerstesideRequest(
         ETTERSENDELSE,
         LOESPOST,
         SKJEMA,
-        NAV_INTERN
+        NAV_INTERN,
     }
 }
 

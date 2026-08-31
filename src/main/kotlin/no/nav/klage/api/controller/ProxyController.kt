@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @ProtectedWithClaims(issuer = ISSUER_AAD)
-class ProxyController(private val foerstesidegeneratorClient: FoerstesidegeneratorClient) {
-
+class ProxyController(
+    private val foerstesidegeneratorClient: FoerstesidegeneratorClient,
+) {
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = getLogger(javaClass.enclosingClass)
@@ -41,7 +42,7 @@ class ProxyController(private val foerstesidegeneratorClient: Foerstesidegenerat
         return ResponseEntity(
             data,
             responseHeaders,
-            HttpStatus.OK
+            HttpStatus.OK,
         )
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 @RestControllerAdvice
 class ProxyErrorHandler {
-
     @ExceptionHandler(WebClientResponseException::class)
     fun handleWebClientResponseException(ex: WebClientResponseException): ResponseEntity<ByteArray> {
         // Copy headers from downstream (avoid hop-by-hop headers that the server manages)

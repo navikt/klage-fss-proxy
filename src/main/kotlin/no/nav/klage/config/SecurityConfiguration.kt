@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration
 @EnableOAuth2Client(cacheEnabled = true)
 @Configuration
 internal class SecurityConfiguration {
-
     companion object {
         const val ISSUER_AAD = "aad"
     }
