@@ -14,3 +14,7 @@ updates:
       all-dependencies:
         patterns:
           - "*"
+    ignore:
+      # token-support 7.x krever Java 25. Fjern når appen er på Java 25.
+      - dependency-name: "no.nav.security:token-*"
+        update-types: ["version-update:semver-major"]
