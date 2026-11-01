@@ -10,10 +10,8 @@ import no.nav.klage.clients.klanke.KlankeClient
 import no.nav.klage.clients.klanke.KlankeSearchInput
 import no.nav.klage.clients.klanke.SakFinishedInput
 import no.nav.klage.clients.klanke.SakFromKlanke
-import no.nav.klage.config.SecurityConfiguration.Companion.ISSUER_AAD
 import no.nav.klage.util.getLogger
 import no.nav.klage.util.getTeamLogger
-import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -24,7 +22,6 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @RestController
-@ProtectedWithClaims(issuer = ISSUER_AAD)
 @RequestMapping("/klanke")
 class KlankeProxyController(
     private val klankeClient: KlankeClient,
