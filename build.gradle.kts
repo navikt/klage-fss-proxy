@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
-val klageAuthVersion = "0.3.0"
+val klageAuthVersion = "0.4.0"
 val ktlintVersion = "1.8.0"
 val logstashVersion = "9.0"
 
