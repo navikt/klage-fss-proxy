@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
-val tokenValidationVersion = "6.0.12"
+val klageAuthVersion = "0.4.0"
 val ktlintVersion = "1.8.0"
 val logstashVersion = "9.0"
 
@@ -34,12 +34,20 @@ dependencies {
     implementation("commons-pool:commons-pool")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("tools.jackson.module:jackson-module-kotlin")
 
-    implementation("no.nav.security:token-validation-spring:$tokenValidationVersion")
-    implementation("no.nav.security:token-client-spring:$tokenValidationVersion")
+    implementation("org.springframework.boot:spring-boot-starter-security-oauth2-resource-server")
+    implementation("no.nav.klage:klage-auth:$klageAuthVersion")
 
     implementation("ch.qos.logback:logback-classic")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashVersion")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage")
+    }
+    testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+    testImplementation("no.nav.klage:klage-auth-test:$klageAuthVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 idea {

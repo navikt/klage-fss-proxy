@@ -3,6 +3,10 @@ spring:
     name: klage-fss-proxy
   main:
     banner-mode: OFF
+  web:
+    error:
+      include-message: never
+      include-stacktrace: never
 
 server:
   port: 7081
@@ -13,7 +17,7 @@ server:
 management:
   endpoint:
     health:
-      show-details: always
+      show-details: never
   endpoints.web:
     exposure:
       include: info, health, metrics, prometheus
@@ -29,21 +33,3 @@ management:
     enabled: false
 
 SERVICE_USER_USERNAME: srvklage-dittnav
-
-TENANT_ID: 966ac572-f5b7-4bbe-aa88-c76419c0f851
-
-no.nav.security.jwt:
-  issuer:
-    aad:
-      discoveryurl: ${AZURE_APP_WELL_KNOWN_URL}
-      accepted_audience: ${AZURE_APP_CLIENT_ID}
-  client:
-    registration:
-      onbehalfof:
-        token-endpoint-url: https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token
-        grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
-        scope: https://graph.microsoft.com/.default
-        authentication:
-          client-id: ${AZURE_APP_CLIENT_ID}
-          client-secret: ${AZURE_APP_CLIENT_SECRET}
-          client-auth-method: client_secret_basic

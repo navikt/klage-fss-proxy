@@ -68,3 +68,6 @@ spec:
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: {{springProfile}}
+    # Spring Security fetches JWKS from login.microsoftonline.com with HttpURLConnection, which only uses the JVM proxy properties.
+    - name: JDK_JAVA_OPTIONS
+      value: $(JAVA_PROXY_OPTIONS)
