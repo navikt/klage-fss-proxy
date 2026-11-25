@@ -11,7 +11,7 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-java@v6.3.0'
         - 'nais/deploy@v3'
-        - 'nais/docker-build-push@v0'
+        - 'nais/docker-build-push@v1'
     '.github/workflows/deploy-to-prod.yaml':
         - 'actions/checkout@v7.0.1'
         - 'nais/deploy@v3'
@@ -142,9 +142,9 @@ dependencies:
         repo_id: 166402203
         uses:
             - 'nais/setup@fb8692f65df9c904e2cdac5d395630ac876abdcf'
-    'nais/docker-build-push@v0':
-        ref: 'v0'
-        commit: 'sha1-588f76a6f45aeb1e75d5e8417ec6ef6d79b2b39f'
+    'nais/docker-build-push@v1':
+        ref: 'v1'
+        commit: 'sha1-6394144a53cad0332745f24a8302f5efaf81719a'
         owner_id: 29488289
         repo_id: 590934741
         uses:
